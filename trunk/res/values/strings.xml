@@ -1,4 +1,3 @@
-<<<<<<< .mine
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">GolfApp</string>
@@ -10,10 +9,4 @@
     <string name="settings">Einstell.</string>
     <string name="mainHeader">GolfApp - by KEKS</string>
 </resources>
-=======
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="hello">Hello World, GolfApp!</string>
-    <string name="app_name">GolfApp</string>
-</resources>
->>>>>>> .r3
+
