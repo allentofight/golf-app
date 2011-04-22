@@ -1,28 +1,76 @@
 package at.campus02.GolfApp;
 
 import android.app.Activity;
-import android.database.Cursor;
+import android.content.Intent;
 import android.os.Bundle;
-import at.campus02.GolfApp.data.GolfAppData;
+import android.view.View;
+import android.widget.Button;
+import at.campus02.GolfApp.course.GolfAppCourse;
+import at.campus02.GolfApp.player.GolfAppPlayer;
 
 public class GolfApp extends Activity {
 	/** Called when the activity is first created. */
-	@Override
+
+	Button managePlayer;
+	Button golfCourse;
+	Button history;
+	Button settings;
+
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		// create DB entries
-		GolfAppData data = new GolfAppData(this);
-		data.insertGolfCourse(5, "Bad Gleichenberg", "Testbeschreibung");
-		data.insertGolfCourse(2, "Graz", "Testbeschreibung2");
-		data.insertGolfCourse(1, "Wien", "Testbeschreibung3");
-		data.insertGolfCourse(3, "Murau", "Testbeschreibung4");
+		// manage Player Button
+		managePlayer = (Button) findViewById(R.id.player);
+		managePlayer.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				Intent myIntent = new Intent(view.getContext(),
+						GolfAppPlayer.class);
+				startActivityForResult(myIntent, 0);
+			}
+		});
 
-		Cursor cursor = data.allCourses(getParent());
-		while (cursor.moveToNext()) {
-			System.out.println(cursor.getInt(0) + " - " + cursor.getString(1)
-					+ " - " + cursor.getString(2));
-		}
+		// Golf Course Button
+		golfCourse = (Button) findViewById(R.id.golfCourse);
+		golfCourse.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				Intent myIntent = new Intent(view.getContext(),
+						GolfAppCourse.class);
+				startActivityForResult(myIntent, 0);
+			}
+		});
+
+		// History Button
+		history = (Button) findViewById(R.id.history);
+		history.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				Intent myIntent = new Intent(view.getContext(),
+						GolfAppHistory.class);
+				startActivityForResult(myIntent, 0);
+			}
+		});
+
+		// Settings Button
+		settings = (Button) findViewById(R.id.settings);
+		settings.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				Intent myIntent = new Intent(view.getContext(),
+						GolfAppSettings.class);
+				startActivityForResult(myIntent, 0);
+			}
+		});
+
+		// create DB entries
+		// GolfAppData data = new GolfAppData(this);
+		// data.insertGolfCourse(5, "Bad Gleichenberg", "Testbeschreibung");
+		// data.insertGolfCourse(2, "Graz", "Testbeschreibung2");
+		// data.insertGolfCourse(1, "Wien", "Testbeschreibung3");
+		// data.insertGolfCourse(3, "Murau", "Testbeschreibung4");
+		//
+		// Cursor cursor = data.allCourses(getParent());
+		// while (cursor.moveToNext()) {
+		// System.out.println(cursor.getInt(0) + " - " + cursor.getString(1)
+		// + " - " + cursor.getString(2));
+		// }
 	}
 }
