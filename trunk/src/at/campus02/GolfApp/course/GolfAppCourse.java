@@ -6,12 +6,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import at.campus02.GolfApp.R;
 
 public class GolfAppCourse extends ListActivity {
+
+	Button ok;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -31,18 +34,29 @@ public class GolfAppCourse extends ListActivity {
 						((TextView) view).getText(), Toast.LENGTH_SHORT).show();
 			}
 		});
+
+		// OK Button
+		ok = (Button) findViewById(R.id.ok);
+		ok.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				finish();
+			}
+		});
 	}
 
 	// ToDo: Scheri - DATA
-	static final String[] GOLFCOURSES = new String[] { "Murhof",
-			"Golf & Country Club Schloss Pichlarn",
-			"Golf- & Landclub Ennstal Weißenbach/Liezen",
-			"Thermengolfclub Fürstenfeld - Loipersdorf", "Bad Gleichenberg",
-			"GC Gut Murstätten", "GC Schloß Frauenthal", "GC Gut Freiberg",
-			"Golf & Country Club Reiting", "GC St.Lorenzen",
-			"GC Erzherzog Johann", "Golfclub Murtal", "GC Almenland-Passail",
-			"Golfclub Graz-Puntigam", "Golfclub Bad Waltersdorf",
-			"Golfclub Graz Andritz St. Gotthard", "Golfclub Thalersee",
-			"Golfclub Murau-Kreischberg", "Golfclub Mariahof" };
+	static final String[] GOLFCOURSES = new String[] { "Murhof (18)",
+			"Golf & Country Club Schloss Pichlarn (18)",
+			"Golf- & Landclub Ennstal Weißenbach/Liezen (18)",
+			"Thermengolfclub Fürstenfeld - Loipersdorf (18)",
+			"Bad Gleichenberg (9)", "GC Gut Murstätten (18)",
+			"GC Schloß Frauenthal (18)", "GC Gut Freiberg (18)",
+			"Golf & Country Club Reiting (18)", "GC St.Lorenzen (18)",
+			"GC Erzherzog Johann (18)", "Golfclub Murtal (18)",
+			"GC Almenland-Passail (18)", "Golfclub Graz-Puntigam (18)",
+			"Golfclub Bad Waltersdorf (18)",
+			"Golfclub Graz Andritz St. Gotthard (18)",
+			"Golfclub Thalersee (18)", "Golfclub Murau-Kreischberg (18)",
+			"Golfclub Mariahof (18)" };
 
 }
