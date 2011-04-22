@@ -1,0 +1,8 @@
+<resources>
+
+    <string-array name="genders">
+        <item>männlich</item>
+        <item>weiblich</item>
+    </string-array>
+    
+</resources>
