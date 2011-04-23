@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import at.campus02.GolfApp.R;
 import at.campus02.GolfApp.data.GolfAppData;
@@ -16,6 +17,8 @@ public class GolfAppAddPlayer extends Activity {
 	Button cancel;
 	Spinner gender;
 	NumberPicker handicap;
+	EditText name;
+	int genderNum;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -25,8 +28,27 @@ public class GolfAppAddPlayer extends Activity {
 		ok = (Button) findViewById(R.id.ok);
 		ok.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
-				GolfAppData data = new GolfAppData(getParent());
-				data.insertPlayer("", 0, 0);
+
+				EditText name = (EditText) findViewById(R.id.name);
+				String nameText = name.getText().toString();
+
+				gender = (Spinner) findViewById(R.id.gender);
+				String genderText = gender.getSelectedItem().toString();
+
+				handicap = (NumberPicker) findViewById(R.id.handicap);
+				int handicapNum = handicap.getCurrent();
+
+				if (nameText != "") {
+					if (genderText == "männlich") {
+						genderNum = 1;
+					} else {
+						genderNum = 0;
+					}
+					GolfAppData data = new GolfAppData(getParent());
+					data.insertPlayer(nameText, genderNum, handicapNum);
+					// Name, gender, handicap
+				}
+
 			}
 		});
 
@@ -50,5 +72,4 @@ public class GolfAppAddPlayer extends Activity {
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		gender.setAdapter(adapter);
 	}
-
 }
