@@ -38,17 +38,14 @@ public class GolfAppAddPlayer extends Activity {
 				handicap = (NumberPicker) findViewById(R.id.handicap);
 				int handicapNum = handicap.getCurrent();
 
-				if (nameText != "") {
-					if (genderText == "männlich") {
-						genderNum = 1;
-					} else {
-						genderNum = 0;
-					}
-					GolfAppData data = new GolfAppData(getParent());
-					data.insertPlayer(nameText, genderNum, handicapNum);
-					// Name, gender, handicap
+				if (nameText != null) {
+					genderNum = (genderText == "weiblich" ? 1 : 0);
 				}
 
+				GolfAppData data = new GolfAppData(getApplicationContext());
+				data.insertPlayer(nameText, genderNum, handicapNum);
+
+				finish();
 			}
 		});
 

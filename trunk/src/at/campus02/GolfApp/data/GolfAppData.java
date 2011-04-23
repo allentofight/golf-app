@@ -1,6 +1,8 @@
 package at.campus02.GolfApp.data;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -95,6 +97,22 @@ public class GolfAppData extends SQLiteOpenHelper {
 		String[] columns = { "_id", "name" };
 
 		return db.query("golfcourse", columns, null, null, null, null, "_id");
+	}
+
+	public Map<String, Integer> allPlayers() {
+		SQLiteDatabase db = getReadableDatabase();
+
+		String[] columns = { "name", "handicap" };
+
+		Cursor cursor = db.query("player", columns, null, null, null, null,
+				"name");
+
+		HashMap<String, Integer> playerMap = new HashMap<String, Integer>();
+
+		while (cursor.moveToNext())
+			playerMap.put(cursor.getString(0), cursor.getInt(1));
+
+		return playerMap;
 	}
 
 	public void insertPlayer(String name, int gender, int handicap) {
