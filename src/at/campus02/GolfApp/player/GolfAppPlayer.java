@@ -17,6 +17,7 @@ public class GolfAppPlayer extends ListActivity {
 
 	Button add;
 	Button cancel;
+	ListView lv;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -27,7 +28,7 @@ public class GolfAppPlayer extends ListActivity {
 		setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item,
 				PLAYER));
 
-		ListView lv = (ListView) this.getListView();
+		lv = (ListView) this.getListView();
 		lv.setTextFilterEnabled(true);
 
 		lv.setOnItemClickListener(new OnItemClickListener() {
