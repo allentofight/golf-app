@@ -1,8 +1,8 @@
 package at.campus02.GolfApp.data;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -23,15 +23,24 @@ public class GolfAppData extends SQLiteOpenHelper {
 		// set up tables if needed
 		String createGolfCourse = "CREATE TABLE golfcourse (id INTEGER PRIMARY KEY, name TEXT NOT NULL)";
 		db.execSQL(createGolfCourse);
+		// insertGolfCourse(db, 1, "Passail");
+		// insertGolfCourse(db, 2, "Graz");
+		// insertGolfCourse(db, 3, "Murau");
+		// insertGolfCourse(db, 4, "Klöch");
+		insertGolfCourse(db, 5, "Bad Gleichenberg");
 
 		String createGolfCourseHoles = "CREATE TABLE hole (course_id INTEGER PRIMARY KEY, number INTEGER PRIMARY KEY,redDistance INTEGER,yellowDistance INTEGER, par INTEGER, handicap INTEGER)";
 		db.execSQL(createGolfCourseHoles);
+		insertHole(db, 5, 1, 421, 463, 5, 5);
+		insertHole(db, 5, 2, 98, 112, 3, 5);
+		insertHole(db, 5, 3, 291, 322, 4, 5);
+		insertHole(db, 5, 4, 129, 141, 3, 5);
+		insertHole(db, 5, 5, 305, 325, 4, 5);
+		insertHole(db, 5, 6, 254, 290, 4, 5);
+		insertHole(db, 5, 7, 235, 278, 4, 5);
+		insertHole(db, 5, 8, 260, 303, 4, 5);
+		insertHole(db, 5, 9, 414, 477, 5, 5);
 
-		insertGolfCourse(db, 1, "Passail");
-		insertGolfCourse(db, 2, "Graz");
-		insertGolfCourse(db, 3, "Murau");
-		insertGolfCourse(db, 4, "Klöch");
-		insertGolfCourse(db, 5, "Bad Gleichenberg");
 	}
 
 	@Override
@@ -46,7 +55,20 @@ public class GolfAppData extends SQLiteOpenHelper {
 		db.insertOrThrow("golfcourse", null, values);
 	}
 
-	public String[] allCourses(Activity activity) {
+	private void insertHole(SQLiteDatabase db, int courseId, int number,
+			int redDistance, int yellowDistance, int par, int handicap) {
+		ContentValues values = new ContentValues();
+		values.put("course_id", courseId);
+		values.put("number", number);
+		values.put("yellowDistance", yellowDistance);
+		values.put("redDistance", redDistance);
+		values.put("par", par);
+		values.put("handicap", handicap);
+
+		db.insertOrThrow("hole", null, values);
+	}
+
+	public Map<Integer, String> allCourses() {
 
 		String[] columns = { "id", "name" };
 
@@ -54,11 +76,11 @@ public class GolfAppData extends SQLiteOpenHelper {
 		Cursor cursor = db.query("golfcourse", columns, null, null, null, null,
 				"id");
 
-		ArrayList<String> golfCourses = new ArrayList<String>();
+		HashMap<Integer, String> courseMap = new HashMap<Integer, String>();
 
 		while (cursor.moveToNext())
-			golfCourses.add(cursor.getString(1));
+			courseMap.put(cursor.getInt(0), cursor.getString(1));
 
-		return (String[]) golfCourses.toArray(new String[golfCourses.size()]);
+		return courseMap;
 	}
 }
