@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import at.campus02.GolfApp.R;
+import at.campus02.GolfApp.data.GolfAppData;
 import at.campus02.GolfApp.external.NumberPicker;
 
 public class GolfAppAddPlayer extends Activity {
@@ -24,7 +25,8 @@ public class GolfAppAddPlayer extends Activity {
 		ok = (Button) findViewById(R.id.ok);
 		ok.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
-				// ToDO: Save Player
+				GolfAppData data = new GolfAppData(getParent());
+				data.insertPlayer("", 0, 0);
 			}
 		});
 
