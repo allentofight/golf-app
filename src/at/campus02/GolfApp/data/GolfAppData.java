@@ -23,7 +23,7 @@ public class GolfAppData extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 
 		// GOLF_COURSE
-		String createGolfCourse = "CREATE TABLE golfcourse (id INTEGER PRIMARY KEY, name TEXT NOT NULL)";
+		String createGolfCourse = "CREATE TABLE golfcourse (course_id INTEGER PRIMARY KEY, name TEXT NOT NULL)";
 		db.execSQL(createGolfCourse);
 		// insertGolfCourse(db, 1, "Passail");
 		// insertGolfCourse(db, 2, "Graz");
@@ -60,6 +60,10 @@ public class GolfAppData extends SQLiteOpenHelper {
 		// PLAYER_HOLE
 		String createPlayerHole = "CREATE TABLE playerhole (course_id INTEGER, hole_number INTEGER, player_name STRING, totalSwings INTEGER, date INTEGER, PRIMARY KEY(course_id, hole_number, player_name))";
 		db.execSQL(createPlayerHole);
+
+		// ROUND
+		String createRound = "CREATE TABLE round (course_id INTEGER, hole_number INTEGER, player_name STRING, totalSwings INTEGER, date INTEGER, PRIMARY KEY(course_id, hole_number, player_name))";
+		db.execSQL(createRound);
 	}
 
 	@Override
@@ -68,7 +72,7 @@ public class GolfAppData extends SQLiteOpenHelper {
 
 	private void insertGolfCourse(SQLiteDatabase db, int courseId, String name) {
 		ContentValues values = new ContentValues();
-		values.put("id", courseId);
+		values.put("course_id", courseId);
 		values.put("name", name);
 
 		db.insertOrThrow("golfcourse", null, values);
@@ -90,10 +94,10 @@ public class GolfAppData extends SQLiteOpenHelper {
 	public Map<String, String> allCourses() {
 		SQLiteDatabase db = getReadableDatabase();
 
-		String[] columns = { "id", "name" };
+		String[] columns = { "course_id", "name" };
 
 		Cursor cursor = db.query("golfcourse", columns, null, null, null, null,
-				"id");
+				"course_id");
 
 		HashMap<String, String> courseMap = new HashMap<String, String>();
 
