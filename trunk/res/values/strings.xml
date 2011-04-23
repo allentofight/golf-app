@@ -7,10 +7,11 @@
     <string name="enterYourName">Name</string>
     <string name="handicap">Handicap</string>
     <string name="gender">Geschlecht</string>
-    <string name="chooseGender">Geschlecht wählen</string>
-    <string name="addPlayer">Spieler hinzufügen</string>
-    <string name="golfCourse">Plätze</string>
-    <string name="selectGolfCourse">Golfplatz wählen</string>
+    <string name="chooseGender">Geschlecht w&#228;hlen</string>
+    <string name="addPlayer">Spieler hinzuf&#252;gen</string>
+    <string name="selectPlayer">Spieler w&#228;hlen</string>
+    <string name="golfCourse">Pl&#228;tze</string>
+    <string name="selectGolfCourse">Golfplatz w&#228;hlen</string>
     <string name="history">Historie</string>
     <string name="settingsShort">Einstell.</string>
     <string name="settings">Einstellungen</string>
@@ -18,7 +19,7 @@
     <string name="managePlayer">Spieler verwalten</string>
     <string name="ok">OK</string>
     <string name="add">Neu</string>
-    <string name="delete">Löschen</string>
+    <string name="delete">L&#246;schen</string>
     <string name="cancel">Abbr.</string>
 </resources>
 

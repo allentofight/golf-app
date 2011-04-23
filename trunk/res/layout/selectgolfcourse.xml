@@ -1,36 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:orientation="vertical"
-  android:layout_width="fill_parent"
-  android:layout_height="fill_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
 
-  <ListView
-    android:id="@android:id/android:list"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentTop="true"
-    android:layout_weight="1.0" />
+	<ListView android:id="@android:id/android:list"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:layout_alignParentTop="true" android:layout_weight="1.0" />
 
-  <LinearLayout
-    android:orientation="horizontal"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    style="@android:style/ButtonBar">
+	<LinearLayout android:orientation="horizontal"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true" style="@android:style/ButtonBar">
 
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_width="fill_parent" android:layout_height="fill_parent"
-		android:stretchColumns="1">
+		<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:stretchColumns="1">
 
-		<TableRow>
+			<TableRow>
+			
+				<Button android:text="@string/ok" android:id="@+id/ok"
+					android:layout_width="wrap_content" android:drawableLeft="@android:drawable/ic_menu_save"
+					android:layout_height="wrap_content" android:layout_gravity="left" />
 
-			<Button android:text="@string/ok" android:id="@+id/ok"
-				android:layout_width="wrap_content" android:drawableLeft="@android:drawable/ic_menu_save"
-				android:layout_height="wrap_content" android:layout_gravity="center" />
+				<Button android:text="@string/cancel" android:id="@+id/cancel"
+					android:drawableLeft="@android:drawable/ic_menu_revert"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:layout_gravity="right" />
 
-		</TableRow>
-	</TableLayout>
-  </LinearLayout>
+			</TableRow>
+		</TableLayout>
+	</LinearLayout>
 
 </LinearLayout>

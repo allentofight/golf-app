@@ -1,6 +1,7 @@
 package at.campus02.GolfApp.course;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -8,14 +9,14 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 import at.campus02.GolfApp.R;
 import at.campus02.GolfApp.data.GolfAppData;
+import at.campus02.GolfApp.player.GolfAppSelectPlayer;
 
 public class GolfAppCourse extends ListActivity {
 
 	Button ok;
+	Button cancel;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -34,14 +35,26 @@ public class GolfAppCourse extends ListActivity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				// When clicked, show a toast with the TextView text
-				Toast.makeText(getApplicationContext(),
-						((TextView) view).getText(), Toast.LENGTH_SHORT).show();
+				// Toast.makeText(getApplicationContext(),
+				// ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
+
+				Intent myIntent = new Intent(view.getContext(),
+						GolfAppSelectPlayer.class);
+				startActivityForResult(myIntent, 0);
 			}
 		});
 
 		// OK Button
 		ok = (Button) findViewById(R.id.ok);
 		ok.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				finish();
+			}
+		});
+
+		// Cancel Button
+		cancel = (Button) findViewById(R.id.cancel);
+		cancel.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 				finish();
 			}
