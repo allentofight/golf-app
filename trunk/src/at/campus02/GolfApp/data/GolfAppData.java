@@ -20,7 +20,8 @@ public class GolfAppData extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		// set up tables if needed
+
+		// GOLF_COURSE
 		String createGolfCourse = "CREATE TABLE golfcourse (id INTEGER PRIMARY KEY, name TEXT NOT NULL)";
 		db.execSQL(createGolfCourse);
 		// insertGolfCourse(db, 1, "Passail");
@@ -29,6 +30,7 @@ public class GolfAppData extends SQLiteOpenHelper {
 		// insertGolfCourse(db, 4, "Klöch");
 		insertGolfCourse(db, 5, "Bad Gleichenberg");
 
+		// HOLE
 		String createGolfCourseHoles = "CREATE TABLE hole (course_id INTEGER PRIMARY KEY, number INTEGER PRIMARY KEY,redDistance INTEGER,yellowDistance INTEGER, par INTEGER, handicap INTEGER)";
 		db.execSQL(createGolfCourseHoles);
 		insertHole(db, 5, 1, 421, 463, 5, 5);
@@ -49,6 +51,10 @@ public class GolfAppData extends SQLiteOpenHelper {
 		insertHole(db, 5, 16, 235, 278, 4, 16);
 		insertHole(db, 5, 17, 260, 303, 4, 8);
 		insertHole(db, 5, 18, 414, 477, 5, 10);
+
+		// PLAYER
+		String createPlayer = "CREATE TABLE player (name STRING PRIMARY KEY, gender INTEGER, handicap INTEGER)";
+		db.execSQL(createPlayer);
 
 	}
 
@@ -91,5 +97,15 @@ public class GolfAppData extends SQLiteOpenHelper {
 			courseMap.put(cursor.getString(0), cursor.getString(1));
 
 		return courseMap;
+	}
+
+	public void insertPlayer(SQLiteDatabase db, String name, int gender,
+			int handicap) {
+		ContentValues values = new ContentValues();
+		values.put("name", name);
+		values.put("gender", gender);
+		values.put("handicap", handicap);
+
+		db.insertOrThrow("player", null, values);
 	}
 }
