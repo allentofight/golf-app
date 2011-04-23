@@ -77,7 +77,7 @@ public class GolfAppData extends SQLiteOpenHelper {
 		db.insertOrThrow("hole", null, values);
 	}
 
-	public Map<Integer, String> allCourses() {
+	public Map<String, String> allCourses() {
 
 		String[] columns = { "id", "name" };
 
@@ -85,10 +85,10 @@ public class GolfAppData extends SQLiteOpenHelper {
 		Cursor cursor = db.query("golfcourse", columns, null, null, null, null,
 				"id");
 
-		HashMap<Integer, String> courseMap = new HashMap<Integer, String>();
+		HashMap<String, String> courseMap = new HashMap<String, String>();
 
 		while (cursor.moveToNext())
-			courseMap.put(cursor.getInt(0), cursor.getString(1));
+			courseMap.put(cursor.getString(0), cursor.getString(1));
 
 		return courseMap;
 	}
