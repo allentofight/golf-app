@@ -32,14 +32,23 @@ public class GolfAppData extends SQLiteOpenHelper {
 		String createGolfCourseHoles = "CREATE TABLE hole (course_id INTEGER PRIMARY KEY, number INTEGER PRIMARY KEY,redDistance INTEGER,yellowDistance INTEGER, par INTEGER, handicap INTEGER)";
 		db.execSQL(createGolfCourseHoles);
 		insertHole(db, 5, 1, 421, 463, 5, 5);
-		insertHole(db, 5, 2, 98, 112, 3, 5);
-		insertHole(db, 5, 3, 291, 322, 4, 5);
-		insertHole(db, 5, 4, 129, 141, 3, 5);
-		insertHole(db, 5, 5, 305, 325, 4, 5);
-		insertHole(db, 5, 6, 254, 290, 4, 5);
-		insertHole(db, 5, 7, 235, 278, 4, 5);
-		insertHole(db, 5, 8, 260, 303, 4, 5);
-		insertHole(db, 5, 9, 414, 477, 5, 5);
+		insertHole(db, 5, 2, 98, 112, 3, 17);
+		insertHole(db, 5, 3, 291, 322, 4, 11);
+		insertHole(db, 5, 4, 129, 141, 3, 13);
+		insertHole(db, 5, 5, 305, 325, 4, 1);
+		insertHole(db, 5, 6, 254, 290, 4, 3);
+		insertHole(db, 5, 7, 235, 278, 4, 15);
+		insertHole(db, 5, 8, 260, 303, 4, 7);
+		insertHole(db, 5, 9, 414, 477, 5, 9);
+		insertHole(db, 5, 10, 421, 463, 5, 6);
+		insertHole(db, 5, 11, 98, 112, 3, 18);
+		insertHole(db, 5, 12, 291, 322, 4, 12);
+		insertHole(db, 5, 13, 129, 141, 3, 14);
+		insertHole(db, 5, 14, 305, 325, 4, 2);
+		insertHole(db, 5, 15, 254, 290, 4, 4);
+		insertHole(db, 5, 16, 235, 278, 4, 16);
+		insertHole(db, 5, 17, 260, 303, 4, 8);
+		insertHole(db, 5, 18, 414, 477, 5, 10);
 
 	}
 
