@@ -1,5 +1,7 @@
 package at.campus02.GolfApp.data;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
@@ -18,38 +20,45 @@ public class GolfAppData extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		String createGolfCourse = "CREATE TABLE golfcourse (id INTEGER PRIMARY KEY, name TEXT NOT NULL, desc TEXT)";
+		// set up tables if needed
+		String createGolfCourse = "CREATE TABLE golfcourse (id INTEGER PRIMARY KEY, name TEXT NOT NULL)";
 		db.execSQL(createGolfCourse);
 
-		insertGolfCourse(db, 5, "Bad Gleichenberg", "Testbeschreibung");
-		insertGolfCourse(db, 2, "Graz", "Testbeschreibung2");
-		insertGolfCourse(db, 1, "Wien", "Testbeschreibung3");
-		insertGolfCourse(db, 3, "Murau", "Testbeschreibung4");
+		String createGolfCourseHoles = "CREATE TABLE hole (course_id INTEGER PRIMARY KEY, number INTEGER PRIMARY KEY,redDistance INTEGER,yellowDistance INTEGER, par INTEGER, handicap INTEGER)";
+		db.execSQL(createGolfCourseHoles);
+
+		insertGolfCourse(db, 1, "Passail");
+		insertGolfCourse(db, 2, "Graz");
+		insertGolfCourse(db, 3, "Murau");
+		insertGolfCourse(db, 4, "Klöch");
+		insertGolfCourse(db, 5, "Bad Gleichenberg");
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
-		// TODO Auto-generated method stub
 	}
 
-	private void insertGolfCourse(SQLiteDatabase db, int courseId, String name,
-			String description) {
+	private void insertGolfCourse(SQLiteDatabase db, int courseId, String name) {
 		ContentValues values = new ContentValues();
 		values.put("id", courseId);
 		values.put("name", name);
-		values.put("desc", description);
 
 		db.insertOrThrow("golfcourse", null, values);
 	}
 
-	public Cursor allCourses(Activity activity) {
+	public String[] allCourses(Activity activity) {
 
-		String[] columns = { "id", "name", "desc" };
+		String[] columns = { "id", "name" };
 
 		SQLiteDatabase db = getReadableDatabase();
 		Cursor cursor = db.query("golfcourse", columns, null, null, null, null,
 				"id");
 
-		return cursor;
+		ArrayList<String> golfCourses = new ArrayList<String>();
+
+		while (cursor.moveToNext())
+			golfCourses.add(cursor.getString(1));
+
+		return (String[]) golfCourses.toArray(new String[golfCourses.size()]);
 	}
 }

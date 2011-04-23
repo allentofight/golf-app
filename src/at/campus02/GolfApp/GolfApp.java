@@ -2,12 +2,10 @@ package at.campus02.GolfApp;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import at.campus02.GolfApp.course.GolfAppCourse;
-import at.campus02.GolfApp.data.GolfAppData;
 import at.campus02.GolfApp.player.GolfAppPlayer;
 
 public class GolfApp extends Activity {
@@ -61,12 +59,5 @@ public class GolfApp extends Activity {
 				startActivityForResult(myIntent, 0);
 			}
 		});
-
-		GolfAppData data = new GolfAppData(this);
-		Cursor cursor = data.allCourses(getParent());
-		while (cursor.moveToNext()) {
-			System.out.println(cursor.getInt(0) + " - " + cursor.getString(1)
-					+ " - " + cursor.getString(2));
-		}
 	}
 }
