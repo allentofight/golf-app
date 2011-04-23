@@ -1,8 +1,6 @@
 package at.campus02.GolfApp.data;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -23,7 +21,7 @@ public class GolfAppData extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 
 		// GOLF_COURSE
-		String createGolfCourse = "CREATE TABLE golfcourse (course_id INTEGER PRIMARY KEY, name TEXT NOT NULL)";
+		String createGolfCourse = "CREATE TABLE golfcourse (_id INTEGER PRIMARY KEY, name TEXT NOT NULL)";
 		db.execSQL(createGolfCourse);
 		// insertGolfCourse(db, 1, "Passail");
 		// insertGolfCourse(db, 2, "Graz");
@@ -32,7 +30,7 @@ public class GolfAppData extends SQLiteOpenHelper {
 		insertGolfCourse(db, 5, "Bad Gleichenberg");
 
 		// HOLE
-		String createGolfCourseHoles = "CREATE TABLE hole (course_id INTEGER, number INTEGER, redDistance INTEGER, yellowDistance INTEGER, par INTEGER, handicap INTEGER, PRIMARY KEY(course_id, number))";
+		String createGolfCourseHoles = "CREATE TABLE hole (_id INTEGER, number INTEGER, redDistance INTEGER, yellowDistance INTEGER, par INTEGER, handicap INTEGER, PRIMARY KEY(course_id, number))";
 		db.execSQL(createGolfCourseHoles);
 		insertHole(db, 5, 1, 421, 463, 5, 5);
 		insertHole(db, 5, 2, 98, 112, 3, 17);
@@ -58,11 +56,11 @@ public class GolfAppData extends SQLiteOpenHelper {
 		db.execSQL(createPlayer);
 
 		// PLAYER_HOLE
-		String createPlayerHole = "CREATE TABLE playerhole (course_id INTEGER, hole_number INTEGER, player_name STRING, totalSwings INTEGER, date INTEGER, PRIMARY KEY(course_id, hole_number, player_name))";
+		String createPlayerHole = "CREATE TABLE playerhole (_id INTEGER, hole_number INTEGER, player_name STRING, totalSwings INTEGER, date INTEGER, PRIMARY KEY(_id, hole_number, player_name))";
 		db.execSQL(createPlayerHole);
 
 		// ROUND
-		String createRound = "CREATE TABLE round (course_id INTEGER, hole_number INTEGER, player_name STRING, totalSwings INTEGER, date INTEGER, PRIMARY KEY(course_id, hole_number, player_name))";
+		String createRound = "CREATE TABLE round (_id INTEGER, hole_number INTEGER, player_name STRING, totalSwings INTEGER, date INTEGER, PRIMARY KEY(_id, hole_number, player_name))";
 		db.execSQL(createRound);
 	}
 
@@ -72,7 +70,7 @@ public class GolfAppData extends SQLiteOpenHelper {
 
 	private void insertGolfCourse(SQLiteDatabase db, int courseId, String name) {
 		ContentValues values = new ContentValues();
-		values.put("course_id", courseId);
+		values.put("_id", courseId);
 		values.put("name", name);
 
 		db.insertOrThrow("golfcourse", null, values);
@@ -81,7 +79,7 @@ public class GolfAppData extends SQLiteOpenHelper {
 	private void insertHole(SQLiteDatabase db, int courseId, int number,
 			int redDistance, int yellowDistance, int par, int handicap) {
 		ContentValues values = new ContentValues();
-		values.put("course_id", courseId);
+		values.put("_id", courseId);
 		values.put("number", number);
 		values.put("yellowDistance", yellowDistance);
 		values.put("redDistance", redDistance);
@@ -91,20 +89,12 @@ public class GolfAppData extends SQLiteOpenHelper {
 		db.insertOrThrow("hole", null, values);
 	}
 
-	public Map<String, String> allCourses() {
+	public Cursor allCourses() {
 		SQLiteDatabase db = getReadableDatabase();
 
-		String[] columns = { "course_id", "name" };
+		String[] columns = { "_id", "name" };
 
-		Cursor cursor = db.query("golfcourse", columns, null, null, null, null,
-				"course_id");
-
-		HashMap<String, String> courseMap = new HashMap<String, String>();
-
-		while (cursor.moveToNext())
-			courseMap.put(cursor.getString(0), cursor.getString(1));
-
-		return courseMap;
+		return db.query("golfcourse", columns, null, null, null, null, "_id");
 	}
 
 	public void insertPlayer(String name, int gender, int handicap) {
@@ -123,7 +113,7 @@ public class GolfAppData extends SQLiteOpenHelper {
 		SQLiteDatabase db = getWritableDatabase();
 
 		ContentValues values = new ContentValues();
-		values.put("course_id", courseId);
+		values.put("_id", courseId);
 		values.put("hole_number", holeNumber);
 		values.put("player_name", playerName);
 		values.put("total_swings", totalSwings);
