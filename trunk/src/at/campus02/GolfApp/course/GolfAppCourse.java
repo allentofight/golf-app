@@ -1,5 +1,7 @@
 package at.campus02.GolfApp.course;
 
+import java.util.Map;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,7 +25,10 @@ public class GolfAppCourse extends ListActivity {
 		setContentView(R.layout.selectgolfcourse);
 
 		GolfAppData data = new GolfAppData(this);
-		String[] courses = data.allCourses(getParent());
+		Map<String, String> map = data.allCourses();
+
+		String[] courses = (String[]) map.values().toArray(
+				new String[map.values().size()]);
 
 		setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item,
 				courses));
