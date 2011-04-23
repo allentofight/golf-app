@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import at.campus02.GolfApp.R;
+import at.campus02.GolfApp.data.GolfAppData;
 
 public class GolfAppCourse extends ListActivity {
 
@@ -20,8 +21,11 @@ public class GolfAppCourse extends ListActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.selectgolfcourse);
 
+		GolfAppData data = new GolfAppData(this);
+		String[] courses = data.allCourses(getParent());
+
 		setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item,
-				GOLFCOURSES));
+				courses));
 
 		ListView lv = (ListView) this.getListView();
 		lv.setTextFilterEnabled(true);
@@ -47,10 +51,10 @@ public class GolfAppCourse extends ListActivity {
 	// ToDo: Scheri - DATA
 	static final String[] GOLFCOURSES = new String[] { "Murhof (18)",
 			"Golf & Country Club Schloss Pichlarn (18)",
-			"Golf- & Landclub Ennstal Weißenbach/Liezen (18)",
-			"Thermengolfclub Fürstenfeld - Loipersdorf (18)",
-			"Bad Gleichenberg (9)", "GC Gut Murstätten (18)",
-			"GC Schloß Frauenthal (18)", "GC Gut Freiberg (18)",
+			"Golf- & Landclub Ennstal Weiï¿½enbach/Liezen (18)",
+			"Thermengolfclub Fï¿½rstenfeld - Loipersdorf (18)",
+			"Bad Gleichenberg (9)", "GC Gut Murstï¿½tten (18)",
+			"GC Schloï¿½ Frauenthal (18)", "GC Gut Freiberg (18)",
 			"Golf & Country Club Reiting (18)", "GC St.Lorenzen (18)",
 			"GC Erzherzog Johann (18)", "Golfclub Murtal (18)",
 			"GC Almenland-Passail (18)", "Golfclub Graz-Puntigam (18)",
