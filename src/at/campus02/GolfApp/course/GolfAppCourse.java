@@ -1,16 +1,15 @@
 package at.campus02.GolfApp.course;
 
-import java.util.Map;
-
 import android.app.ListActivity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import at.campus02.GolfApp.R;
 import at.campus02.GolfApp.data.GolfAppData;
 import at.campus02.GolfApp.player.GolfAppSelectPlayer;
@@ -26,13 +25,32 @@ public class GolfAppCourse extends ListActivity {
 		setContentView(R.layout.selectgolfcourse);
 
 		GolfAppData data = new GolfAppData(this);
-		Map<String, String> map = data.allCourses();
+		// test
+		Cursor c = data.allCourses();
 
-		String[] courses = (String[]) map.values().toArray(
-				new String[map.values().size()]);
+		startManagingCursor(c);
+		getListView().setOnCreateContextMenuListener(this);
 
-		setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item,
-				courses));
+		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
+				R.layout.list_item, c, new String[] { "_id" },
+				new int[] { R.id.golfCourse });
+
+		// adapter.setViewBinder(new ViewBinder() {
+		// public boolean setViewValue(View view, Cursor theCursor, int column)
+		// {
+		// final String ColNameModel = theCursor.getString(1); // Name und
+		// // Model
+		// ((TextView) view).setText(ColNameModel);
+		// return true;
+		// }
+		// });
+
+		this.setListAdapter(adapter);
+
+		// TODO eigener Adapter der String bei courses ausgibt aber integer
+		// merkt - für die Datenbank
+		// setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item,
+		// courses));
 
 		lv = (ListView) this.getListView();
 		lv.setTextFilterEnabled(true);
