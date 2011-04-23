@@ -32,7 +32,7 @@ public class GolfAppData extends SQLiteOpenHelper {
 		insertGolfCourse(db, 5, "Bad Gleichenberg");
 
 		// HOLE
-		String createGolfCourseHoles = "CREATE TABLE hole (course_id INTEGER PRIMARY KEY, number INTEGER PRIMARY KEY,redDistance INTEGER,yellowDistance INTEGER, par INTEGER, handicap INTEGER)";
+		String createGolfCourseHoles = "CREATE TABLE hole (course_id INTEGER, number INTEGER, redDistance INTEGER, yellowDistance INTEGER, par INTEGER, handicap INTEGER, PRIMARY KEY(course_id, number))";
 		db.execSQL(createGolfCourseHoles);
 		insertHole(db, 5, 1, 421, 463, 5, 5);
 		insertHole(db, 5, 2, 98, 112, 3, 17);
@@ -58,7 +58,7 @@ public class GolfAppData extends SQLiteOpenHelper {
 		db.execSQL(createPlayer);
 
 		// PLAYER_HOLE
-		String createPlayerHole = "CREATE TABLE playerhole (course_id INTEGER PRIMARY KEY, hole_number INTEGER PRIMARY KEY, player_name STRING PRIMARY KEY, totalSwings INTEGER, date INTEGER)";
+		String createPlayerHole = "CREATE TABLE playerhole (course_id INTEGER, hole_number INTEGER, player_name STRING, totalSwings INTEGER, date INTEGER, PRIMARY KEY(course_id, hole_number, player_name))";
 		db.execSQL(createPlayerHole);
 	}
 
