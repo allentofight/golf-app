@@ -84,10 +84,10 @@ public class GolfAppData extends SQLiteOpenHelper {
 	}
 
 	public Map<String, String> allCourses() {
+		SQLiteDatabase db = getReadableDatabase();
 
 		String[] columns = { "id", "name" };
 
-		SQLiteDatabase db = getReadableDatabase();
 		Cursor cursor = db.query("golfcourse", columns, null, null, null, null,
 				"id");
 
@@ -99,8 +99,9 @@ public class GolfAppData extends SQLiteOpenHelper {
 		return courseMap;
 	}
 
-	public void insertPlayer(SQLiteDatabase db, String name, int gender,
-			int handicap) {
+	public void insertPlayer(String name, int gender, int handicap) {
+		SQLiteDatabase db = getWritableDatabase();
+
 		ContentValues values = new ContentValues();
 		values.put("name", name);
 		values.put("gender", gender);
