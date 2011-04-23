@@ -1,5 +1,6 @@
 package at.campus02.GolfApp.data;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,6 +57,9 @@ public class GolfAppData extends SQLiteOpenHelper {
 		String createPlayer = "CREATE TABLE player (name STRING PRIMARY KEY, gender INTEGER, handicap INTEGER)";
 		db.execSQL(createPlayer);
 
+		// PLAYER_HOLE
+		String createPlayerHole = "CREATE TABLE playerhole (course_id INTEGER PRIMARY KEY, hole_number INTEGER PRIMARY KEY, player_name STRING PRIMARY KEY, totalSwings INTEGER, date INTEGER)";
+		db.execSQL(createPlayerHole);
 	}
 
 	@Override
@@ -109,4 +113,20 @@ public class GolfAppData extends SQLiteOpenHelper {
 
 		db.insertOrThrow("player", null, values);
 	}
+
+	public void insertPlayerHole(int courseId, int holeNumber,
+			String playerName, int totalSwings, Date date) {
+		SQLiteDatabase db = getWritableDatabase();
+
+		ContentValues values = new ContentValues();
+		values.put("course_id", courseId);
+		values.put("hole_number", holeNumber);
+		values.put("player_name", playerName);
+		values.put("total_swings", totalSwings);
+		values.put("date", Date.UTC(date.getYear(), date.getMonth(),
+				date.getDay(), 0, 0, 0));
+
+		db.insertOrThrow("playerhole", null, values);
+	}
+
 }
