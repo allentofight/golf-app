@@ -19,6 +19,7 @@ public class GolfAppCourse extends ListActivity {
 
 	Button ok;
 	Button cancel;
+	ListView lv;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,7 +34,7 @@ public class GolfAppCourse extends ListActivity {
 		setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item,
 				courses));
 
-		ListView lv = (ListView) this.getListView();
+		lv = (ListView) this.getListView();
 		lv.setTextFilterEnabled(true);
 
 		lv.setOnItemClickListener(new OnItemClickListener() {
@@ -43,9 +44,12 @@ public class GolfAppCourse extends ListActivity {
 				// Toast.makeText(getApplicationContext(),
 				// ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
 
+				String text = "" + lv.getItemAtPosition(position);
 				Intent myIntent = new Intent(view.getContext(),
 						GolfAppSelectPlayer.class);
+				myIntent.putExtra("courseName", text);
 				startActivityForResult(myIntent, 0);
+
 			}
 		});
 
