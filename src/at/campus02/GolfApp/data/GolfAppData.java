@@ -20,6 +20,11 @@ public class GolfAppData extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		String createGolfCourse = "CREATE TABLE golfcourse (id INTEGER PRIMARY KEY, name TEXT NOT NULL, desc TEXT)";
 		db.execSQL(createGolfCourse);
+
+		insertGolfCourse(db, 5, "Bad Gleichenberg", "Testbeschreibung");
+		insertGolfCourse(db, 2, "Graz", "Testbeschreibung2");
+		insertGolfCourse(db, 1, "Wien", "Testbeschreibung3");
+		insertGolfCourse(db, 3, "Murau", "Testbeschreibung4");
 	}
 
 	@Override
@@ -27,9 +32,8 @@ public class GolfAppData extends SQLiteOpenHelper {
 		// TODO Auto-generated method stub
 	}
 
-	public void insertGolfCourse(int courseId, String name, String description) {
-		SQLiteDatabase db = getWritableDatabase();
-
+	private void insertGolfCourse(SQLiteDatabase db, int courseId, String name,
+			String description) {
 		ContentValues values = new ContentValues();
 		values.put("id", courseId);
 		values.put("name", name);
