@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import at.campus02.GolfApp.R;
 import at.campus02.GolfApp.data.GolfAppData;
 import at.campus02.GolfApp.player.GolfAppSelectPlayer;
@@ -23,25 +24,23 @@ public class GolfAppCourse extends ListActivity {
 
 		GolfAppData data = new GolfAppData(this);
 		Cursor c = data.allCourses();
-
 		startManagingCursor(c);
-		getListView().setOnCreateContextMenuListener(this);
+
+		String[] from = new String[] { "name", "_id" };
+		int[] to = new int[] { android.R.id.text1, android.R.id.text2 };
 
 		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
-				android.R.layout.simple_list_item_1, c, new String[] { "_id",
-						"name" }, new int[] { android.R.id.text2,
-						android.R.id.text1 });
+				android.R.layout.simple_list_item_2, c, from, to);
 
-		getListView().setAdapter(adapter);
-		getListView().setTextFilterEnabled(true);
+		this.setListAdapter(adapter);
 
 		// OK Button
-		ok = (Button) findViewById(R.id.ok);
-		ok.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View view) {
-				finish();
-			}
-		});
+		// ok = (Button) findViewById(R.id.ok);
+		// ok.setOnClickListener(new View.OnClickListener() {
+		// public void onClick(View view) {
+		// finish();
+		// }
+		// });
 
 		// Cancel Button
 		cancel = (Button) findViewById(R.id.cancel);
@@ -54,14 +53,14 @@ public class GolfAppCourse extends ListActivity {
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
-		super.onListItemClick(l, v, position, id);
+		// super.onListItemClick(l, v, position, id);
 
-		String text = "" + getListView().getItemAtPosition(position);
-		long course_id = getListView().getItemIdAtPosition(position);
+		TextView textView = (TextView) v.findViewById(android.R.id.text1);
+		String course_name = textView.getText().toString();
+		long course_id = l.getItemIdAtPosition(position);
 		Intent myIntent = new Intent(v.getContext(), GolfAppSelectPlayer.class);
-		myIntent.putExtra("courseName", text);
+		myIntent.putExtra("courseName", course_name);
 		myIntent.putExtra("courseId", course_id);
 		startActivityForResult(myIntent, 0);
 	}
-
 }
