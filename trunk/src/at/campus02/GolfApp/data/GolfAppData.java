@@ -27,9 +27,9 @@ public class GolfAppData extends SQLiteOpenHelper {
 		db.execSQL(createGolfCourse);
 		insertGolfCourse(db, 1, "Passail");
 		insertGolfCourse(db, 2, "Graz");
-		// insertGolfCourse(db, 3, "Murau");
-		// insertGolfCourse(db, 4, "Klöch");
-		insertGolfCourse(db, 5, "Bad Gleichenberg");
+		insertGolfCourse(db, 30, "Murau");
+		insertGolfCourse(db, 4, "Klöch");
+		insertGolfCourse(db, 50, "Bad Gleichenberg");
 
 		// HOLE
 		String createGolfCourseHoles = "CREATE TABLE hole (_id INTEGER, number INTEGER, redDistance INTEGER, yellowDistance INTEGER, par INTEGER, handicap INTEGER, PRIMARY KEY(_id, number))";
@@ -73,6 +73,9 @@ public class GolfAppData extends SQLiteOpenHelper {
 	private void insertGolfCourse(SQLiteDatabase db, int courseId, String name) {
 		ContentValues values = new ContentValues();
 		values.put("name", name);
+		// Scheri du Hirschi... wenn du beim erstellen der DB keine ID übergibst
+		// dann macht er einfach ein Autoincrement!!!!
+		values.put("_id", courseId);
 
 		db.insertOrThrow("golfcourse", null, values);
 	}
