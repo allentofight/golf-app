@@ -25,33 +25,49 @@ public class GolfAppData extends SQLiteOpenHelper {
 		// GOLF_COURSE
 		String createGolfCourse = "CREATE TABLE golfcourse (_id INTEGER PRIMARY KEY, name TEXT NOT NULL)";
 		db.execSQL(createGolfCourse);
-		insertGolfCourse(db, 1, "Passail");
-		insertGolfCourse(db, 2, "Graz");
-		insertGolfCourse(db, 30, "Murau");
-		insertGolfCourse(db, 4, "Klöch");
-		insertGolfCourse(db, 5, "Bad Gleichenberg");
+		insertGolfCourse(db, 2, "Klöch");
+		insertGolfCourse(db, 1, "Bad Gleichenberg");
 
 		// HOLE
 		String createGolfCourseHoles = "CREATE TABLE hole (course_id INTEGER, _id INTEGER, redDistance INTEGER, yellowDistance INTEGER, par INTEGER, handicap INTEGER, PRIMARY KEY(course_id, _id))";
 		db.execSQL(createGolfCourseHoles);
-		insertHole(db, 5, 1, 421, 463, 5, 5);
-		insertHole(db, 5, 2, 98, 112, 3, 17);
-		insertHole(db, 5, 3, 291, 322, 4, 11);
-		insertHole(db, 5, 4, 129, 141, 3, 13);
-		insertHole(db, 5, 5, 305, 325, 4, 1);
-		insertHole(db, 5, 6, 254, 290, 4, 3);
-		insertHole(db, 5, 7, 235, 278, 4, 15);
-		insertHole(db, 5, 8, 260, 303, 4, 7);
-		insertHole(db, 5, 9, 414, 477, 5, 9);
-		insertHole(db, 5, 10, 421, 463, 5, 6);
-		insertHole(db, 5, 11, 98, 112, 3, 18);
-		insertHole(db, 5, 12, 291, 322, 4, 12);
-		insertHole(db, 5, 13, 129, 141, 3, 14);
-		insertHole(db, 5, 14, 305, 325, 4, 2);
-		insertHole(db, 5, 15, 254, 290, 4, 4);
-		insertHole(db, 5, 16, 235, 278, 4, 16);
-		insertHole(db, 5, 17, 260, 303, 4, 8);
-		insertHole(db, 5, 18, 414, 477, 5, 10);
+		insertHole(db, 1, 1, 421, 463, 5, 5);
+		insertHole(db, 1, 2, 98, 112, 3, 17);
+		insertHole(db, 1, 3, 291, 322, 4, 11);
+		insertHole(db, 1, 4, 129, 141, 3, 13);
+		insertHole(db, 1, 5, 305, 325, 4, 1);
+		insertHole(db, 1, 6, 254, 290, 4, 3);
+		insertHole(db, 1, 7, 235, 278, 4, 15);
+		insertHole(db, 1, 8, 260, 303, 4, 7);
+		insertHole(db, 1, 9, 414, 477, 5, 9);
+		insertHole(db, 1, 10, 421, 463, 5, 6);
+		insertHole(db, 1, 11, 98, 112, 3, 18);
+		insertHole(db, 1, 12, 291, 322, 4, 12);
+		insertHole(db, 1, 13, 129, 141, 3, 14);
+		insertHole(db, 1, 14, 305, 325, 4, 2);
+		insertHole(db, 1, 15, 254, 290, 4, 4);
+		insertHole(db, 1, 16, 235, 278, 4, 16);
+		insertHole(db, 1, 17, 260, 303, 4, 8);
+		insertHole(db, 1, 18, 414, 477, 5, 10);
+
+		insertHole(db, 2, 1, 421, 463, 5, 5);
+		insertHole(db, 2, 2, 98, 112, 3, 17);
+		insertHole(db, 2, 3, 291, 322, 4, 11);
+		insertHole(db, 2, 4, 129, 141, 3, 13);
+		insertHole(db, 2, 5, 305, 325, 4, 1);
+		insertHole(db, 2, 6, 254, 290, 4, 3);
+		insertHole(db, 2, 7, 235, 278, 4, 15);
+		insertHole(db, 2, 8, 260, 303, 4, 7);
+		insertHole(db, 2, 9, 414, 477, 5, 9);
+		insertHole(db, 2, 10, 421, 463, 5, 6);
+		insertHole(db, 2, 11, 98, 112, 3, 18);
+		insertHole(db, 2, 12, 291, 322, 4, 12);
+		insertHole(db, 2, 13, 129, 141, 3, 14);
+		insertHole(db, 2, 14, 305, 325, 4, 2);
+		insertHole(db, 2, 15, 254, 290, 4, 4);
+		insertHole(db, 2, 16, 235, 278, 4, 16);
+		insertHole(db, 2, 17, 260, 303, 4, 8);
+		insertHole(db, 2, 18, 414, 477, 5, 10);
 
 		// PLAYER
 		String createPlayer = "CREATE TABLE player (name STRING PRIMARY KEY, gender INTEGER, handicap INTEGER)";
