@@ -14,12 +14,11 @@
             </intent-filter>
         </activity>
         
+        <activity android:name=".GolfAppPlayRound" android:label="@string/playRound"></activity>
         <activity android:name=".player.GolfAppPlayer" android:label="@string/managePlayer"></activity>
         <activity android:name=".player.GolfAppSelectPlayer" android:label="@string/selectPlayer"></activity>
         <activity android:name=".player.GolfAppAddPlayer" android:label="@string/addPlayer"></activity>
         <activity android:name=".course.GolfAppCourse" android:label="@string/golfCourse"></activity>
-        <activity android:name=".GolfAppHistory" android:label="@string/history"></activity>
-        <activity android:name=".GolfAppSettings" android:label="@string/settings"></activity>
 
     </application>
 </manifest>
