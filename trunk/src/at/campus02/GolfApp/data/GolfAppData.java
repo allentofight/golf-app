@@ -29,7 +29,7 @@ public class GolfAppData extends SQLiteOpenHelper {
 		insertGolfCourse(db, 2, "Graz");
 		insertGolfCourse(db, 30, "Murau");
 		insertGolfCourse(db, 4, "Klöch");
-		insertGolfCourse(db, 50, "Bad Gleichenberg");
+		insertGolfCourse(db, 5, "Bad Gleichenberg");
 
 		// HOLE
 		String createGolfCourseHoles = "CREATE TABLE hole (course_id INTEGER, _id INTEGER, redDistance INTEGER, yellowDistance INTEGER, par INTEGER, handicap INTEGER, PRIMARY KEY(course_id, _id))";
