@@ -1,20 +1,20 @@
 package at.campus02.GolfApp;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import at.campus02.GolfApp.data.GolfAppData;
-import at.campus02.GolfApp.external.NumberPicker;
 
 public class GolfAppPlayRound extends ListActivity {
 
 	Button ok;
 	Button cancel;
-	NumberPicker shots;
 	String courseName;
 	int courseId;
 	TextView tv;
@@ -64,5 +64,17 @@ public class GolfAppPlayRound extends ListActivity {
 			}
 		});
 
+	}
+
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		TextView textView = (TextView) v.findViewById(android.R.id.text1);
+		String course_name = textView.getText().toString();
+		int course_id = (int) l.getItemIdAtPosition(position);
+		Intent myIntent = new Intent(getApplicationContext(),
+				GolfAppSetShotsForHole.class);
+		myIntent.putExtra("courseName", course_name);
+		myIntent.putExtra("courseId", course_id);
+		startActivity(myIntent);
 	}
 }
