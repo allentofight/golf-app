@@ -102,11 +102,14 @@ public class GolfAppData extends SQLiteOpenHelper {
 	public Cursor getHolesByCourse(int courseId) {
 		SQLiteDatabase db = getReadableDatabase();
 
-		String[] columns = { "_id", "yellowDistance", "redDistance", "par",
-				"handicap" };
+		return db
+				.rawQuery(
+						"select _id || '. Loch' as _id, 'Frau: ' || cast(yellowDistance as varchar(10)) || ' m - Mann: ' || cast(redDistance as varchar(3))|| ' m - Handicap: ' || cast(handicap as varchar(3)) as par From hole WHERE course_id = "
+								+ courseId, null);
 
-		return db.query("hole", columns, "course_id = " + courseId, null, null,
-				null, "_id");
+		// return db.query("hole", columns, "course_id = " + courseId, null,
+		// null,
+		// null, "_id");
 	}
 
 	public Map<String, Integer> allPlayers() {
