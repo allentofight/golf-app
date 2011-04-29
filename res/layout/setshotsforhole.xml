@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+
+	<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:stretchColumns="1" android:padding="10dip">
+
+		
+
+		<TableRow>
+	<TextView android:layout_width="fill_parent"
+				android:layout_height="wrap_content" 
+				android:text="WILLI" android:layout_gravity="center_vertical" />
+			
+			<at.campus02.GolfApp.external.NumberPicker
+				android:id="@+id/shots" android:layout_width="fill_parent"
+				android:layout_height="wrap_content" />
+
+		</TableRow>
+
+	
+	</TableLayout>
+
+	<RelativeLayout android:orientation="horizontal"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true" style="@android:style/ButtonBar">
+
+		<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:stretchColumns="1">
+
+			<TableRow>
+
+				<Button android:text="@string/ok" android:id="@+id/ok"
+					android:layout_width="wrap_content" android:drawableLeft="@android:drawable/ic_menu_save"
+					android:layout_height="wrap_content" android:layout_gravity="left" />
+
+				<Button android:text="@string/cancel" android:id="@+id/cancel"
+					android:drawableLeft="@android:drawable/ic_menu_revert"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:layout_gravity="right" />
+
+			</TableRow>
+		</TableLayout>
+	</RelativeLayout>
+
+</RelativeLayout>

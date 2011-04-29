@@ -4,6 +4,7 @@
     <string name="newRound">Runde starten</string>
     <string name="playRound">Runde spielen</string>
     <string name="continueRound">Runde fortsetzen</string>
+    <string name="setShots">Schl&#228;ge eintragen</string>
     <string name="player">Spieler</string>
     <string name="enterYourName">Name</string>
     <string name="handicap">Handicap</string>
