@@ -99,6 +99,16 @@ public class GolfAppData extends SQLiteOpenHelper {
 		return db.query("golfcourse", columns, null, null, null, null, "_id");
 	}
 
+	public Cursor getHolesByCourse(int courseId) {
+		SQLiteDatabase db = getReadableDatabase();
+
+		String[] columns = { "number", "yellowDistance", "redDistance", "par",
+				"handicap" };
+
+		return db.query("hole", columns, "_id = " + courseId, null, null, null,
+				"number");
+	}
+
 	public Map<String, Integer> allPlayers() {
 		SQLiteDatabase db = getReadableDatabase();
 
