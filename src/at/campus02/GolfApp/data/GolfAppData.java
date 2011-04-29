@@ -73,8 +73,6 @@ public class GolfAppData extends SQLiteOpenHelper {
 	private void insertGolfCourse(SQLiteDatabase db, int courseId, String name) {
 		ContentValues values = new ContentValues();
 		values.put("name", name);
-		// Scheri du Hirschi... wenn du beim erstellen der DB keine ID übergibst
-		// dann macht er einfach ein Autoincrement!!!!
 		values.put("_id", courseId);
 
 		db.insertOrThrow("golfcourse", null, values);

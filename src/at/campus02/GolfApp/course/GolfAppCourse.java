@@ -35,12 +35,12 @@ public class GolfAppCourse extends ListActivity {
 		this.setListAdapter(adapter);
 
 		// OK Button
-		// ok = (Button) findViewById(R.id.ok);
-		// ok.setOnClickListener(new View.OnClickListener() {
-		// public void onClick(View view) {
-		// finish();
-		// }
-		// });
+		ok = (Button) findViewById(R.id.ok);
+		ok.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				finish();
+			}
+		});
 
 		// Cancel Button
 		cancel = (Button) findViewById(R.id.cancel);
