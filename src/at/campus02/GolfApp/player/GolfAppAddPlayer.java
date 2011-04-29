@@ -1,6 +1,7 @@
 package at.campus02.GolfApp.player;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,8 +20,8 @@ public class GolfAppAddPlayer extends Activity {
 	EditText name;
 	int genderNum;
 
-	protected void onStart() {
-		super.onStart();
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 		setContentView(R.layout.addplayer);
 
 		// OK Button
