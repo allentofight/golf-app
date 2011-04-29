@@ -4,7 +4,6 @@ import java.util.Map;
 
 import android.app.ListActivity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -23,8 +22,9 @@ public class GolfAppPlayer extends ListActivity {
 	ListView lv;
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+	protected void onStart() {
+		super.onStart();
+
 		setContentView(R.layout.manageplayer);
 
 		GolfAppData data = new GolfAppData(getApplicationContext());
@@ -66,6 +66,5 @@ public class GolfAppPlayer extends ListActivity {
 				finish();
 			}
 		});
-
 	}
 }
