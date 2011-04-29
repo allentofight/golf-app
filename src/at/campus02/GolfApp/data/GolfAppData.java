@@ -32,7 +32,7 @@ public class GolfAppData extends SQLiteOpenHelper {
 		insertGolfCourse(db, 50, "Bad Gleichenberg");
 
 		// HOLE
-		String createGolfCourseHoles = "CREATE TABLE hole (_id INTEGER, number INTEGER, redDistance INTEGER, yellowDistance INTEGER, par INTEGER, handicap INTEGER, PRIMARY KEY(_id, number))";
+		String createGolfCourseHoles = "CREATE TABLE hole (course_id INTEGER, _id INTEGER, redDistance INTEGER, yellowDistance INTEGER, par INTEGER, handicap INTEGER, PRIMARY KEY(_id, number))";
 		db.execSQL(createGolfCourseHoles);
 		insertHole(db, 5, 1, 421, 463, 5, 5);
 		insertHole(db, 5, 2, 98, 112, 3, 17);
@@ -81,8 +81,8 @@ public class GolfAppData extends SQLiteOpenHelper {
 	private void insertHole(SQLiteDatabase db, int courseId, int number,
 			int redDistance, int yellowDistance, int par, int handicap) {
 		ContentValues values = new ContentValues();
-		values.put("_id", courseId);
-		values.put("number", number);
+		values.put("course_id", courseId);
+		values.put("_id", number);
 		values.put("yellowDistance", yellowDistance);
 		values.put("redDistance", redDistance);
 		values.put("par", par);
@@ -102,11 +102,11 @@ public class GolfAppData extends SQLiteOpenHelper {
 	public Cursor getHolesByCourse(int courseId) {
 		SQLiteDatabase db = getReadableDatabase();
 
-		String[] columns = { "number", "yellowDistance", "redDistance", "par",
+		String[] columns = { "_id", "yellowDistance", "redDistance", "par",
 				"handicap" };
 
-		return db.query("hole", columns, "_id = " + courseId, null, null, null,
-				"number");
+		return db.query("hole", columns, "course_id = " + courseId, null, null,
+				null, "_id");
 	}
 
 	public Map<String, Integer> allPlayers() {
