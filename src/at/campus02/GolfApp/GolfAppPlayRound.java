@@ -37,7 +37,7 @@ public class GolfAppPlayRound extends ListActivity {
 		Cursor c = data.getHolesByCourse(courseId);
 		startManagingCursor(c);
 
-		String[] from = new String[] { "_id", "par" };
+		String[] from = new String[] { "par", "_id" };
 		int[] to = new int[] { android.R.id.text1, android.R.id.text2 };
 
 		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,

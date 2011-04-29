@@ -53,14 +53,13 @@ public class GolfAppCourse extends ListActivity {
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
-		// super.onListItemClick(l, v, position, id);
-
 		TextView textView = (TextView) v.findViewById(android.R.id.text1);
 		String course_name = textView.getText().toString();
-		long course_id = l.getItemIdAtPosition(position);
-		Intent myIntent = new Intent(v.getContext(), GolfAppSelectPlayer.class);
+		int course_id = (int) l.getItemIdAtPosition(position);
+		Intent myIntent = new Intent(getApplicationContext(),
+				GolfAppSelectPlayer.class);
 		myIntent.putExtra("courseName", course_name);
 		myIntent.putExtra("courseId", course_id);
-		startActivityForResult(myIntent, 0);
+		startActivity(myIntent);
 	}
 }
