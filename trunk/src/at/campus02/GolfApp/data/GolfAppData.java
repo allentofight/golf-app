@@ -122,6 +122,8 @@ public class GolfAppData extends SQLiteOpenHelper {
 		while (cursor.moveToNext())
 			playerMap.put(cursor.getString(0), cursor.getInt(1));
 
+		db.close();
+
 		return playerMap;
 	}
 
