@@ -31,17 +31,6 @@
 
 		</LinearLayout>
 
-		<TableRow>
 		
-			<Button android:text="@string/history" android:id="@+id/history"
-				android:drawableLeft="@android:drawable/ic_menu_info_details" android:layout_width="wrap_content"
-				android:layout_height="wrap_content" android:layout_gravity="left" />
-
-			<Button android:text="@string/settingsShort" android:id="@+id/settings"
-				android:drawableLeft="@android:drawable/ic_menu_preferences"
-				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:layout_gravity="right" />
-
-		</TableRow>
 	</TableLayout>
 </LinearLayout>
