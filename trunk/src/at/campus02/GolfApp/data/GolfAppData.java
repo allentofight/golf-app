@@ -126,6 +126,11 @@ public class GolfAppData extends SQLiteOpenHelper {
 		db.insertOrThrow("player", null, values);
 	}
 
+	public void deletePlayer(String name) {
+		SQLiteDatabase db = getWritableDatabase();
+		db.delete("player", "name =" + name, null);
+	}
+
 	public void insertPlayerHole(int courseId, int holeNumber,
 			String playerName, int totalSwings, Date date) {
 		SQLiteDatabase db = getWritableDatabase();
