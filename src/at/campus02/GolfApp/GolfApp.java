@@ -14,8 +14,6 @@ public class GolfApp extends Activity {
 	Button newRound;
 	Button managePlayer;
 	Button golfCourse;
-	Button history;
-	Button settings;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -61,24 +59,5 @@ public class GolfApp extends Activity {
 			}
 		});
 
-		// History Button
-		history = (Button) findViewById(R.id.history);
-		history.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View view) {
-				Intent myIntent = new Intent(view.getContext(),
-						GolfAppHistory.class);
-				startActivityForResult(myIntent, 0);
-			}
-		});
-
-		// Settings Button
-		settings = (Button) findViewById(R.id.settings);
-		settings.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View view) {
-				Intent myIntent = new Intent(view.getContext(),
-						GolfAppSettings.class);
-				startActivityForResult(myIntent, 0);
-			}
-		});
 	}
 }
