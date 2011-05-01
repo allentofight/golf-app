@@ -51,6 +51,10 @@ public class GolfAppSetShotsForHole extends Activity {
 				shots = (NumberPicker) findViewById(R.id.shots);
 				shots.setRange(0, 15);
 				shots.setCurrent(par);
+				// Shots NumberPicker
+				shots = (NumberPicker) findViewById(R.id.shots);
+				shots.setRange(0, 15);
+				shots.setCurrent(par);
 			}
 		}
 
