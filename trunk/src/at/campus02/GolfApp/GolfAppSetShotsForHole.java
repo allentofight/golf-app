@@ -1,7 +1,8 @@
 package at.campus02.GolfApp;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,25 +16,43 @@ public class GolfAppSetShotsForHole extends Activity {
 	String courseName;
 	int courseId;
 	TextView tv;
+	ArrayList<String> selectedPlayer = new ArrayList<String>();
+	int par;
 
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+	protected void onStart() {
+		super.onStart();
 		setContentView(R.layout.setshotsforhole);
 
-		// // Get vars from previous View
-		// if (getIntent().hasExtra("courseName") == true
-		// && getIntent().hasExtra("courseId") == true) {
-		// courseName = getIntent().getExtras().getString("courseName");
-		// courseId = getIntent().getExtras().getInt("courseId");
-		// // Show Course Name
-		// tv = (TextView) findViewById(R.id.courseName);
-		// tv.setText(courseName);
-		// }
+		// Get vars from previous View
+		if (getIntent().hasExtra("courseName") == true
+				&& getIntent().hasExtra("courseId") == true
+				&& getIntent().hasExtra("ArraySelectedPlayer") == true) {
+			courseName = getIntent().getExtras().getString("courseName");
+			courseId = getIntent().getExtras().getInt("courseId");
 
-		// Shots NumberPicker
-		shots = (NumberPicker) findViewById(R.id.shots);
-		shots.setRange(0, 15);
-		shots.setCurrent(3);
+			selectedPlayer = getIntent().getExtras().getStringArrayList(
+					"ArraySelectedPlayer");
+
+			tv = (TextView) findViewById(R.id.courseName);
+			tv.setText(courseName);
+
+			char[] c = courseName.toCharArray();
+			for (int i = c.length - 1; i < c.length; i++) {
+				char parchar = c[i];
+				par = parchar - 48;
+			}
+
+			// TODO Willibald.. glaub net dass das mit dem Datepicker geht!!
+			for (int i = 0; i < selectedPlayer.size(); i++) {
+				tv = (TextView) findViewById(R.id.player);
+				tv.setText(selectedPlayer.get(i));
+
+				// Shots NumberPicker
+				shots = (NumberPicker) findViewById(R.id.shots);
+				shots.setRange(0, 15);
+				shots.setCurrent(par);
+			}
+		}
 
 		// OK Button
 		ok = (Button) findViewById(R.id.ok);

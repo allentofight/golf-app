@@ -1,9 +1,10 @@
 package at.campus02.GolfApp;
 
+import java.util.ArrayList;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -18,16 +19,21 @@ public class GolfAppPlayRound extends ListActivity {
 	String courseName;
 	int courseId;
 	TextView tv;
+	ArrayList<String> selectedPlayer = new ArrayList<String>();
 
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+	protected void onStart() {
+		super.onStart();
 		setContentView(R.layout.playround);
 
 		// Get vars from previous View
 		if (getIntent().hasExtra("courseName") == true
-				&& getIntent().hasExtra("courseId") == true) {
+				&& getIntent().hasExtra("courseId") == true
+				&& getIntent().hasExtra("ArraySelectedPlayer") == true) {
 			courseName = getIntent().getExtras().getString("courseName");
 			courseId = getIntent().getExtras().getInt("courseId");
+			selectedPlayer = getIntent().getExtras().getStringArrayList(
+					"ArraySelectedPlayer");
+			// String test = selectedPlayer.get(1);
 			// Show Course Name
 			tv = (TextView) findViewById(R.id.courseName);
 			tv.setText(courseName);
@@ -75,6 +81,7 @@ public class GolfAppPlayRound extends ListActivity {
 				GolfAppSetShotsForHole.class);
 		myIntent.putExtra("courseName", course_name);
 		myIntent.putExtra("courseId", course_id);
+		myIntent.putStringArrayListExtra("ArraySelectedPlayer", selectedPlayer);
 		startActivity(myIntent);
 	}
 }

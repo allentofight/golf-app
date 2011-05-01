@@ -1,5 +1,6 @@
 package at.campus02.GolfApp.player;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import android.app.ListActivity;
@@ -7,6 +8,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.TextView;
 import at.campus02.GolfApp.GolfAppPlayRound;
@@ -22,6 +24,8 @@ public class GolfAppSelectPlayer extends ListActivity {
 	int courseId;
 	ListView lv;
 	TextView tv;
+	ArrayAdapter<String> adapter;
+	ArrayList<String> selectedChildren = new ArrayList<String>();
 
 	@Override
 	protected void onStart() {
@@ -48,18 +52,31 @@ public class GolfAppSelectPlayer extends ListActivity {
 		lv = (ListView) this.getListView();
 		// Set option as Multiple Choice. So that user can able to select more
 		// the one option from list
-		lv.setAdapter(new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_multiple_choice, players));
+		adapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_multiple_choice, players);
+		lv.setAdapter(adapter);
 		lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
 		// OK Button
 		ok = (Button) findViewById(R.id.ok);
 		ok.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
+				for (int i = 0; i < lv.getChildCount(); i++) {
+					CheckedTextView c = (CheckedTextView) lv.getChildAt(i);
+					if (c.isChecked()) {
+						String child = c.getText().toString();
+						selectedChildren.add(child);
+					}
+				}
 				Intent myIntent = new Intent(view.getContext(),
 						GolfAppPlayRound.class);
 				myIntent.putExtra("courseName", courseName);
 				myIntent.putExtra("courseId", courseId);
+				// Bundle bundle = new Bundle();
+				// bundle.putStringArrayList("ArraySelectedPlayers",
+				// selectedChildren);
+				myIntent.putStringArrayListExtra("ArraySelectedPlayer",
+						selectedChildren);
 				startActivityForResult(myIntent, 0);
 			}
 		});
