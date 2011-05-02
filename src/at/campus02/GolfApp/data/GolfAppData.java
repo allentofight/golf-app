@@ -128,6 +128,14 @@ public class GolfAppData extends SQLiteOpenHelper {
 		// null, "_id");
 	}
 
+	// TODO Stephan
+	public Cursor getResult(int courseId, String player) {
+		SQLiteDatabase db = getReadableDatabase();
+
+		return db.rawQuery("select * From playerhole where _id = " + courseId
+				+ " and player_name", null);
+	}
+
 	public Map<String, Integer> allPlayers() {
 		SQLiteDatabase db = getReadableDatabase();
 
@@ -176,5 +184,4 @@ public class GolfAppData extends SQLiteOpenHelper {
 
 		db.insertOrThrow("playerhole", null, values);
 	}
-
 }

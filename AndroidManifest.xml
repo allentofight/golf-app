@@ -13,6 +13,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="GolfAppResult" android:label="@string/resultSum"></activity>
         <activity android:name="GolfAppSetShotsForHolePlayer" android:label="@string/setShots"></activity>
         <activity android:name="GolfAppSetShotsForHole" android:label="@string/setShots"></activity>
         <activity android:name=".GolfAppPlayRound" android:label="@string/playRound"></activity>
