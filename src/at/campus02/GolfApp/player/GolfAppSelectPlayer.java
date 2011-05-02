@@ -50,8 +50,6 @@ public class GolfAppSelectPlayer extends ListActivity {
 
 		// Select Player ListView
 		lv = (ListView) this.getListView();
-		// Set option as Multiple Choice. So that user can able to select more
-		// the one option from list
 		adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_multiple_choice, players);
 		lv.setAdapter(adapter);
@@ -72,9 +70,6 @@ public class GolfAppSelectPlayer extends ListActivity {
 						GolfAppPlayRound.class);
 				myIntent.putExtra("courseName", courseName);
 				myIntent.putExtra("courseId", courseId);
-				// Bundle bundle = new Bundle();
-				// bundle.putStringArrayList("ArraySelectedPlayers",
-				// selectedChildren);
 				myIntent.putStringArrayListExtra("ArraySelectedPlayer",
 						selectedChildren);
 				startActivityForResult(myIntent, 0);

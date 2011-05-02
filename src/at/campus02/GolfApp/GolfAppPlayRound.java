@@ -76,11 +76,11 @@ public class GolfAppPlayRound extends ListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		TextView textView = (TextView) v.findViewById(android.R.id.text1);
 		String course_name = textView.getText().toString();
-		int course_id = (int) l.getItemIdAtPosition(position);
+		// int course_id = (int) l.getItemIdAtPosition(position);
 		Intent myIntent = new Intent(getApplicationContext(),
 				GolfAppSetShotsForHole.class);
 		myIntent.putExtra("courseName", course_name);
-		myIntent.putExtra("courseId", course_id);
+		myIntent.putExtra("courseId", courseId);
 		myIntent.putStringArrayListExtra("ArraySelectedPlayer", selectedPlayer);
 		startActivity(myIntent);
 	}
