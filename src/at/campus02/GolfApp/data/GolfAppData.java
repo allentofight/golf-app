@@ -132,8 +132,8 @@ public class GolfAppData extends SQLiteOpenHelper {
 	public Cursor getResult(int courseId, String player) {
 		SQLiteDatabase db = getReadableDatabase();
 
-		return db.rawQuery("select * From playerhole where _id = " + courseId
-				+ " and player_name", null);
+		return db.rawQuery("select * From playerhole where _id = " + courseId,
+				null);
 	}
 
 	public Map<String, Integer> allPlayers() {
