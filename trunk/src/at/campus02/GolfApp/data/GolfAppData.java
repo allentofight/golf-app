@@ -25,8 +25,8 @@ public class GolfAppData extends SQLiteOpenHelper {
 		// GOLF_COURSE
 		String createGolfCourse = "CREATE TABLE golfcourse (_id INTEGER PRIMARY KEY, name TEXT NOT NULL)";
 		db.execSQL(createGolfCourse);
-		insertGolfCourse(db, 2, "Klöch");
 		insertGolfCourse(db, 1, "Bad Gleichenberg");
+		insertGolfCourse(db, 2, "Klöch");
 
 		// HOLE
 		String createGolfCourseHoles = "CREATE TABLE hole (course_id INTEGER, _id INTEGER, redDistance INTEGER, yellowDistance INTEGER, par INTEGER, handicap INTEGER, PRIMARY KEY(course_id, _id))";
@@ -74,11 +74,11 @@ public class GolfAppData extends SQLiteOpenHelper {
 		db.execSQL(createPlayer);
 
 		// PLAYER_HOLE
-		String createPlayerHole = "CREATE TABLE playerhole (_id INTEGER, hole_number INTEGER, player_name STRING, totalSwings INTEGER, date INTEGER, PRIMARY KEY(_id, hole_number, player_name))";
+		String createPlayerHole = "CREATE TABLE playerhole (_id INTEGER, hole_number INTEGER, player_name STRING, total_swings INTEGER, date INTEGER, PRIMARY KEY(_id, hole_number, player_name))";
 		db.execSQL(createPlayerHole);
 
 		// ROUND
-		String createRound = "CREATE TABLE round (_id INTEGER, hole_number INTEGER, player_name STRING, totalSwings INTEGER, date INTEGER, PRIMARY KEY(_id, hole_number, player_name))";
+		String createRound = "CREATE TABLE round (_id INTEGER, hole_number INTEGER, player_name STRING, total_swings INTEGER, date INTEGER, PRIMARY KEY(_id, hole_number, player_name))";
 		db.execSQL(createRound);
 	}
 

@@ -18,9 +18,9 @@
 			<TableRow>
 			
 				<Button android:text="@string/ok" android:id="@+id/ok"
-					android:layout_width="wrap_content" android:drawableLeft="@android:drawable/ic_menu_save"
-					android:layout_height="wrap_content" android:layout_gravity="left" />
-
+				android:layout_width="wrap_content" android:drawableLeft="@android:drawable/ic_menu_save"
+				android:layout_height="wrap_content" android:layout_gravity="left" />
+							
 				<Button android:text="@string/cancel" android:id="@+id/cancel"
 					android:drawableLeft="@android:drawable/ic_menu_revert"
 					android:layout_width="wrap_content" android:layout_height="wrap_content"

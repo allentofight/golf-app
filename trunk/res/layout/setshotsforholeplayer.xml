@@ -1,29 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical" android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
-	
-<TextView android:layout_width="fill_parent"
+
+
+	<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:stretchColumns="1" android:padding="10dip">
+
+	<TextView android:layout_width="fill_parent"
 				android:layout_height="wrap_content" 
 				android:id="@+id/courseName" android:layout_gravity="center_vertical" android:padding="10dp"
-    android:textSize="16sp" android:background="@color/green" android:textColor="@color/white" />
+    android:textSize="20sp"/>	
 
-	<ListView android:id="@android:id/android:list"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:layout_alignParentTop="true" android:layout_weight="1.0" android:textSize="22sp" />
+		<TableRow>
+	<TextView android:layout_width="fill_parent"
+				android:layout_height="wrap_content" 
+				android:text="@string/player" android:id="@+id/player" android:layout_gravity="center_vertical" android:textSize="24sp"/>
+			
+			<at.campus02.GolfApp.external.NumberPicker
+				android:id="@+id/shots" android:layout_width="fill_parent"
+				android:layout_height="wrap_content" />
 
+		</TableRow>
 
-	<LinearLayout android:orientation="horizontal"
+	
+	</TableLayout>
+
+	<RelativeLayout android:orientation="horizontal"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
 		android:layout_alignParentBottom="true" style="@android:style/ButtonBar">
-		
-		
+
 		<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
 			android:stretchColumns="1">
 
 			<TableRow>
-			
+
 				<Button android:text="@string/ok" android:id="@+id/ok"
 					android:layout_width="wrap_content" android:drawableLeft="@android:drawable/ic_menu_save"
 					android:layout_height="wrap_content" android:layout_gravity="left" />
@@ -35,6 +48,6 @@
 
 			</TableRow>
 		</TableLayout>
-	</LinearLayout>
+	</RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>
