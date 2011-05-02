@@ -8,11 +8,6 @@
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
 		android:stretchColumns="1" android:padding="10dip">
 
-	<TextView android:layout_width="fill_parent"
-				android:layout_height="wrap_content" 
-				android:id="@+id/courseName" android:layout_gravity="center_vertical" android:padding="10dp"
-    android:textSize="20sp"/>	
-
 		<TableRow>
 	<TextView android:layout_width="fill_parent"
 				android:layout_height="wrap_content" 

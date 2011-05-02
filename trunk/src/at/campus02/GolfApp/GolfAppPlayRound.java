@@ -14,7 +14,7 @@ import at.campus02.GolfApp.data.GolfAppData;
 
 public class GolfAppPlayRound extends ListActivity {
 
-	Button ok;
+	Button result;
 	Button cancel;
 	String courseName;
 	int courseId;
@@ -52,13 +52,28 @@ public class GolfAppPlayRound extends ListActivity {
 		this.setListAdapter(adapter);
 
 		// OK Button
-		ok = (Button) findViewById(R.id.ok);
-		ok.setOnClickListener(new View.OnClickListener() {
+		// ok = (Button) findViewById(R.id.ok);
+		// ok.setOnClickListener(new View.OnClickListener() {
+		// public void onClick(View view) {
+		//
+		// // TODO: Scheri DATA
+		//
+		// finish();
+		// }
+		// });
+
+		// Result Button
+		result = (Button) findViewById(R.id.result);
+		result.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 
-				// TODO: Scheri DATA
-
-				finish();
+				Intent myIntent = new Intent(view.getContext(),
+						GolfAppResult.class);
+				myIntent.putExtra("courseName", courseName);
+				myIntent.putExtra("courseId", courseId);
+				myIntent.putStringArrayListExtra("ArraySelectedPlayer",
+						selectedPlayer);
+				startActivityForResult(myIntent, 0);
 			}
 		});
 
