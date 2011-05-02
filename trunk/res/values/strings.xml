@@ -24,7 +24,7 @@
     <string name="delete">L&#246;schen</string>
     <string name="cancel">Abbr.</string>
     <string name="result">Resultat</string>
-    <string name="resultSum">Resultat - Summer aller Schläge</string>
+    <string name="resultSum">Resultat - Summe aller Schläge</string>
     <string name="end">Runde beenden</string>
     
 </resources>
