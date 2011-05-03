@@ -59,6 +59,7 @@ public class GolfAppSelectPlayer extends ListActivity {
 		ok = (Button) findViewById(R.id.ok);
 		ok.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
+				selectedChildren.clear();
 				for (int i = 0; i < lv.getChildCount(); i++) {
 					CheckedTextView c = (CheckedTextView) lv.getChildAt(i);
 					if (c.isChecked()) {
