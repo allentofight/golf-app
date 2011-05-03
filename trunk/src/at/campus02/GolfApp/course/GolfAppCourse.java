@@ -9,12 +9,13 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import at.campus02.GolfApp.GolfAppLists;
 import at.campus02.GolfApp.GolfAppPlayRound;
 import at.campus02.GolfApp.R;
 import at.campus02.GolfApp.data.GolfAppData;
 import at.campus02.GolfApp.player.GolfAppSelectPlayer;
 
-public class GolfAppCourse extends ListActivity {
+public class GolfAppCourse extends ListActivity implements GolfAppLists {
 
 	Button ok;
 	Button cancel;
@@ -62,6 +63,8 @@ public class GolfAppCourse extends ListActivity {
 		if (getIntent().hasExtra("onlyCourse") == true) {
 			myIntent = new Intent(getApplicationContext(),
 					GolfAppPlayRound.class);
+			myIntent.putStringArrayListExtra("ArraySelectedPlayer",
+					selectedPlayer);
 		} else {
 			myIntent = new Intent(getApplicationContext(),
 					GolfAppSelectPlayer.class);

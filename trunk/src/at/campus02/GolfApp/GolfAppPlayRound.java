@@ -1,7 +1,5 @@
 package at.campus02.GolfApp;
 
-import java.util.ArrayList;
-
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -13,14 +11,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 import at.campus02.GolfApp.data.GolfAppData;
 
-public class GolfAppPlayRound extends ListActivity {
+public class GolfAppPlayRound extends ListActivity implements GolfAppLists {
 
 	Button result;
 	Button cancel;
 	String courseName;
 	int courseId;
 	TextView tv;
-	ArrayList<String> selectedPlayer = new ArrayList<String>();
+
+	// ArrayList<String> selectedPlayer = new ArrayList<String>();
 
 	protected void onStart() {
 		super.onStart();
@@ -28,17 +27,23 @@ public class GolfAppPlayRound extends ListActivity {
 
 		// Get vars from previous View
 		if (getIntent().hasExtra("courseName") == true
-				&& getIntent().hasExtra("courseId") == true
-		// && getIntent().hasExtra("ArraySelectedPlayer") == true //
-		) {
+				&& getIntent().hasExtra("courseId") == true)
+		// && getIntent().hasExtra("ArraySelectedPlayer") == true)
+		{
 			courseName = getIntent().getExtras().getString("courseName");
 			courseId = getIntent().getExtras().getInt("courseId");
-			selectedPlayer = getIntent().getExtras().getStringArrayList(
-					"ArraySelectedPlayer");
-			// String test = selectedPlayer.get(1);
+			// selectedPlayer = getIntent().getExtras().getStringArrayList(
+			// "ArraySelectedPlayer");
+			selectedPlayer.clear();
+			selectedPlayer.addAll(getIntent().getExtras().getStringArrayList(
+					"ArraySelectedPlayer"));
 			// Show Course Name
 			tv = (TextView) findViewById(R.id.courseName);
 			tv.setText(courseName);
+
+			// Für Runde fortsetzen
+			values.add(Integer.toString(courseId));
+			values.add(courseName);
 		}
 
 		GolfAppData data = new GolfAppData(this);
@@ -52,17 +57,6 @@ public class GolfAppPlayRound extends ListActivity {
 				android.R.layout.simple_list_item_2, c, from, to);
 
 		this.setListAdapter(adapter);
-
-		// OK Button
-		// ok = (Button) findViewById(R.id.ok);
-		// ok.setOnClickListener(new View.OnClickListener() {
-		// public void onClick(View view) {
-		//
-		// // TODO: Scheri DATA
-		//
-		// finish();
-		// }
-		// });
 
 		// Result Button
 		result = (Button) findViewById(R.id.result);
