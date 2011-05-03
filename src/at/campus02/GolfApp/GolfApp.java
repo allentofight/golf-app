@@ -5,13 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 import at.campus02.GolfApp.course.GolfAppCourse;
 import at.campus02.GolfApp.player.GolfAppPlayer;
 
-public class GolfApp extends Activity {
+public class GolfApp extends Activity implements GolfAppLists {
 	/** Called when the activity is first created. */
 
 	Button newRound;
+	Button continueRound;
 	Button managePlayer;
 	Button golfCourse;
 
@@ -29,12 +31,24 @@ public class GolfApp extends Activity {
 			}
 		});
 
-		// manage Player Button
-		managePlayer = (Button) findViewById(R.id.player);
-		managePlayer.setOnClickListener(new View.OnClickListener() {
+		// continue Round Button
+		continueRound = (Button) findViewById(R.id.continueRound);
+		continueRound.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
+				if (selectedPlayer.isEmpty() == true) {
+					Toast.makeText(getApplicationContext(),
+							"Es wurde keine Runde gestartet",
+							Toast.LENGTH_SHORT).show();
+					return;
+				}
+				int courseId = Integer.parseInt(values.get(0));
+				String course_name = values.get(1);
 				Intent myIntent = new Intent(view.getContext(),
-						GolfAppPlayer.class);
+						GolfAppPlayRound.class);
+				myIntent.putExtra("courseName", course_name);
+				myIntent.putExtra("courseId", courseId);
+				myIntent.putStringArrayListExtra("ArraySelectedPlayer",
+						selectedPlayer);
 				startActivityForResult(myIntent, 0);
 			}
 		});
