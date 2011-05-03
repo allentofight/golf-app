@@ -55,6 +55,7 @@ public class GolfApp extends Activity {
 			public void onClick(View view) {
 				Intent myIntent = new Intent(view.getContext(),
 						GolfAppCourse.class);
+				myIntent.putExtra("onlyCourse", "onlyCourse");
 				startActivityForResult(myIntent, 0);
 			}
 		});
