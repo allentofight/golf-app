@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 import at.campus02.GolfApp.data.GolfAppData;
 
 public class GolfAppPlayRound extends ListActivity {
@@ -28,7 +29,8 @@ public class GolfAppPlayRound extends ListActivity {
 		// Get vars from previous View
 		if (getIntent().hasExtra("courseName") == true
 				&& getIntent().hasExtra("courseId") == true
-				&& getIntent().hasExtra("ArraySelectedPlayer") == true) {
+		// && getIntent().hasExtra("ArraySelectedPlayer") == true //
+		) {
 			courseName = getIntent().getExtras().getString("courseName");
 			courseId = getIntent().getExtras().getInt("courseId");
 			selectedPlayer = getIntent().getExtras().getStringArrayList(
@@ -92,6 +94,13 @@ public class GolfAppPlayRound extends ListActivity {
 		TextView textView = (TextView) v.findViewById(android.R.id.text1);
 		String course_name = textView.getText().toString();
 		// int course_id = (int) l.getItemIdAtPosition(position);
+
+		if (getIntent().hasExtra("onlyCourse") == true) {
+			Toast.makeText(getApplicationContext(),
+					"Sie müssen die Runde starten", Toast.LENGTH_SHORT).show();
+			return;
+		}
+
 		Intent myIntent = new Intent(getApplicationContext(),
 				GolfAppSetShotsForHole.class);
 		myIntent.putExtra("courseName", course_name);

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import at.campus02.GolfApp.GolfAppPlayRound;
 import at.campus02.GolfApp.R;
 import at.campus02.GolfApp.data.GolfAppData;
 import at.campus02.GolfApp.player.GolfAppSelectPlayer;
@@ -56,10 +57,18 @@ public class GolfAppCourse extends ListActivity {
 		TextView textView = (TextView) v.findViewById(android.R.id.text1);
 		String course_name = textView.getText().toString();
 		int course_id = (int) l.getItemIdAtPosition(position);
-		Intent myIntent = new Intent(getApplicationContext(),
-				GolfAppSelectPlayer.class);
+		Intent myIntent = new Intent();
+
+		if (getIntent().hasExtra("onlyCourse") == true) {
+			myIntent = new Intent(getApplicationContext(),
+					GolfAppPlayRound.class);
+		} else {
+			myIntent = new Intent(getApplicationContext(),
+					GolfAppSelectPlayer.class);
+		}
 		myIntent.putExtra("courseName", course_name);
 		myIntent.putExtra("courseId", course_id);
+		myIntent.putExtra("onlyCourse", "onlyCourse");
 		startActivity(myIntent);
 	}
 }
