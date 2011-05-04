@@ -30,6 +30,7 @@ public class GolfAppDeleteRound extends Activity implements GolfAppLists {
 				GolfAppData data = new GolfAppData(getApplicationContext());
 				data.newRound();
 				selectedPlayer.clear();
+				values.clear();
 				Intent myIntent = new Intent(view.getContext(),
 						GolfAppCourse.class);
 				startActivityForResult(myIntent, 0);
