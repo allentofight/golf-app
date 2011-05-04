@@ -89,10 +89,6 @@ public class GolfAppData extends SQLiteOpenHelper {
 		String createPlayerHole = "CREATE TABLE playerhole (_id INTEGER, hole_number INTEGER, player_name STRING, total_swings INTEGER, date INTEGER, PRIMARY KEY(_id, hole_number, player_name))";
 		db.execSQL(createPlayerHole);
 
-		// ROUND
-		// String createRound =
-		// "CREATE TABLE round (_id INTEGER, hole_number INTEGER, player_name STRING, total_swings INTEGER, date INTEGER, PRIMARY KEY(_id, hole_number, player_name))";
-		// db.execSQL(createRound);
 	}
 
 	@Override
@@ -133,12 +129,11 @@ public class GolfAppData extends SQLiteOpenHelper {
 
 		return db
 				.rawQuery(
-						"select _id || '. Loch - Par ' || par as _id, 'Gelb: ' || cast(yellowDistance as varchar(10)) || ' m - Rot: ' || cast(redDistance as varchar(3))|| 'm - Handicap: ' || cast(handicap as varchar(3)) as par From hole WHERE course_id = "
+						"select _id || '. Loch - Par ' || par as _id, 'Gelb: ' ||"
+								+ " cast(yellowDistance as varchar(10)) ||"
+								+ " ' m - Rot: ' || cast(redDistance as varchar(3))|| 'm - Handicap: ' || cast(handicap as varchar(3))"
+								+ " as par From hole WHERE course_id = "
 								+ courseId, null);
-
-		// return db.query("hole", columns, "course_id = " + courseId, null,
-		// null,
-		// null, "_id");
 	}
 
 	public Cursor getResult(int courseId, ArrayList<String> player) {
