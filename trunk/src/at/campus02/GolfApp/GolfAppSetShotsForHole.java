@@ -78,7 +78,6 @@ public class GolfAppSetShotsForHole extends ListActivity {
 		});
 	}
 
-	// TODO Andi
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		String player = (String) l.getItemAtPosition(position);
 		Intent myIntent = new Intent(getApplicationContext(),

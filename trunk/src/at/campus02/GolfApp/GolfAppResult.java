@@ -3,7 +3,6 @@ package at.campus02.GolfApp;
 import java.util.ArrayList;
 
 import android.app.ListActivity;
-import android.content.Intent;
 import android.database.Cursor;
 import android.view.View;
 import android.widget.Button;
@@ -61,17 +60,6 @@ public class GolfAppResult extends ListActivity {
 			this.setListAdapter(adapter);
 
 		}
-
-		// OK Button
-		// TODO Scheri
-		end = (Button) findViewById(R.id.end);
-		end.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View view) {
-
-				Intent myIntent = new Intent(view.getContext(), GolfApp.class);
-				startActivityForResult(myIntent, 0);
-			}
-		});
 
 		// Cancel Button
 		cancel = (Button) findViewById(R.id.cancel);
