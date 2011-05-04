@@ -21,7 +21,7 @@ public class GolfAppDeleteRound extends Activity implements GolfAppLists {
 		tv = (TextView) findViewById(R.id.courseName);
 		tv.setText("Die vorherige Runde wird gelöscht!");
 		tv = (TextView) findViewById(R.id.sure);
-		tv.setText("Sind Sie sicher Sicher dass Sie fortfahren möchten?");
+		tv.setText("Sind Sie sicher dass Sie fortfahren möchten?");
 
 		// Yes Button
 		yes = (Button) findViewById(R.id.yes);
