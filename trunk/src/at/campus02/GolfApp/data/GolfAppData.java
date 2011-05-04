@@ -85,14 +85,20 @@ public class GolfAppData extends SQLiteOpenHelper {
 		String createPlayer = "CREATE TABLE player (name STRING PRIMARY KEY, gender INTEGER, handicap INTEGER)";
 		db.execSQL(createPlayer);
 
-		// PLAYER_HOLE
-		String createPlayerHole = "CREATE TABLE playerhole (_id INTEGER, hole_number INTEGER, player_name STRING, total_swings INTEGER, date INTEGER, PRIMARY KEY(_id, hole_number, player_name))";
-		db.execSQL(createPlayerHole);
+		// ROUND
+		String createRound = "CREATE TABLE round (_id INTEGER, hole_number INTEGER, player_name STRING, total_swings INTEGER, date INTEGER, PRIMARY KEY(_id, hole_number, player_name))";
+		db.execSQL(createRound);
 
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
+	}
+
+	public void newRound() {
+		SQLiteDatabase db = getWritableDatabase();
+		db.delete("round", null, null);
+
 	}
 
 	private void insertGolfCourse(SQLiteDatabase db, int courseId, String name) {
@@ -147,7 +153,7 @@ public class GolfAppData extends SQLiteOpenHelper {
 
 		return db.rawQuery(
 				"SELECT _id,player_name,SUM(total_swings) AS total_swings FROM"
-						+ " playerhole WHERE _id = " + courseId + " AND ("
+						+ " round WHERE _id = " + courseId + " AND ("
 						+ namesquery + ") GROUP BY _id,player_name", null);
 	}
 
@@ -185,8 +191,8 @@ public class GolfAppData extends SQLiteOpenHelper {
 		db.delete("player", "name =" + name, null);
 	}
 
-	public void insertPlayerHole(int courseId, int holeNumber,
-			String playerName, int totalSwings, Date date) {
+	public void insertRound(int courseId, int holeNumber, String playerName,
+			int totalSwings, Date date) {
 		SQLiteDatabase db = getWritableDatabase();
 
 		ContentValues values = new ContentValues();
@@ -197,6 +203,6 @@ public class GolfAppData extends SQLiteOpenHelper {
 		values.put("date", Date.UTC(date.getYear(), date.getMonth(),
 				date.getDay(), 0, 0, 0));
 
-		db.insertOrThrow("playerhole", null, values);
+		db.insertOrThrow("round", null, values);
 	}
 }

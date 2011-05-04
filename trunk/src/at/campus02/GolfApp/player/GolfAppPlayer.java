@@ -18,6 +18,7 @@ import at.campus02.GolfApp.data.GolfAppData;
 public class GolfAppPlayer extends ListActivity {
 
 	Button add;
+	Button ok;
 	Button cancel;
 	ListView lv;
 
@@ -46,6 +47,14 @@ public class GolfAppPlayer extends ListActivity {
 				// When clicked, show a toast with the TextView text
 				Toast.makeText(getApplicationContext(),
 						((TextView) view).getText(), Toast.LENGTH_SHORT).show();
+			}
+		});
+
+		// Ok Button
+		ok = (Button) findViewById(R.id.ok);
+		ok.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				finish();
 			}
 		});
 
