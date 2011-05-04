@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import at.campus02.GolfApp.course.GolfAppCourse;
+import at.campus02.GolfApp.data.GolfAppData;
 import at.campus02.GolfApp.player.GolfAppPlayer;
 
 public class GolfApp extends Activity implements GolfAppLists {
@@ -27,6 +28,8 @@ public class GolfApp extends Activity implements GolfAppLists {
 			public void onClick(View view) {
 				Intent myIntent = new Intent(view.getContext(),
 						GolfAppCourse.class);
+				GolfAppData data = new GolfAppData(getApplicationContext());
+				data.newRound();
 				startActivityForResult(myIntent, 0);
 			}
 		});

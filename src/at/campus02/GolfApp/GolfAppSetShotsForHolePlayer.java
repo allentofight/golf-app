@@ -57,7 +57,7 @@ public class GolfAppSetShotsForHolePlayer extends Activity {
 
 				GolfAppData data = new GolfAppData(getApplicationContext());
 				Date date = new Date();
-				data.insertPlayerHole(courseId, hole, player, totalSwings, date);
+				data.insertRound(courseId, hole, player, totalSwings, date);
 
 				finish();
 			}
