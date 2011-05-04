@@ -47,6 +47,7 @@ public class GolfApp extends Activity implements GolfAppLists {
 							Toast.LENGTH_SHORT).show();
 					return;
 				}
+				// TODO Andi
 				int courseId = Integer.parseInt(values.get(0));
 				String course_name = values.get(1);
 				Intent myIntent = new Intent(view.getContext(),

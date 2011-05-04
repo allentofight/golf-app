@@ -12,7 +12,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import at.campus02.GolfApp.data.GolfAppData;
 
-public class GolfAppResult extends ListActivity {
+public class GolfAppResult extends ListActivity implements GolfAppLists {
 
 	Button end;
 	Button cancel;
@@ -39,7 +39,10 @@ public class GolfAppResult extends ListActivity {
 			tv = (TextView) findViewById(R.id.courseName);
 			tv.setText(courseName);
 
-			// TODO Stephan
+			// Für Runde fortsetzen
+			values.add(Integer.toString(courseId));
+			values.add(courseName);
+
 			GolfAppData data = new GolfAppData(this);
 			Cursor c = data.getResult(courseId, player);
 			startManagingCursor(c);

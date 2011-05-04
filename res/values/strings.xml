@@ -26,6 +26,8 @@
     <string name="result">Resultat</string>
     <string name="resultSum">Resultat - Summe aller Schläge</string>
     <string name="end">Runde beenden</string>
-    
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
+    <string name="deleteRound"></string>
 </resources>
 

@@ -40,10 +40,6 @@ public class GolfAppPlayRound extends ListActivity implements GolfAppLists {
 			// Show Course Name
 			tv = (TextView) findViewById(R.id.courseName);
 			tv.setText(courseName);
-
-			// Für Runde fortsetzen
-			values.add(Integer.toString(courseId));
-			values.add(courseName);
 		}
 
 		GolfAppData data = new GolfAppData(this);
