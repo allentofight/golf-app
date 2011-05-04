@@ -3,7 +3,6 @@ package at.campus02.GolfApp.course;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -20,8 +19,8 @@ public class GolfAppCourse extends ListActivity implements GolfAppLists {
 	Button ok;
 	Button cancel;
 
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+	protected void onStart() {
+		super.onStart();
 		setContentView(R.layout.selectgolfcourse);
 
 		GolfAppData data = new GolfAppData(this);
@@ -35,14 +34,6 @@ public class GolfAppCourse extends ListActivity implements GolfAppLists {
 				android.R.layout.simple_list_item_2, c, from, to);
 
 		this.setListAdapter(adapter);
-
-		// OK Button
-		// ok = (Button) findViewById(R.id.ok);
-		// ok.setOnClickListener(new View.OnClickListener() {
-		// public void onClick(View view) {
-		// finish();
-		// }
-		// });
 
 		// Cancel Button
 		cancel = (Button) findViewById(R.id.cancel);
