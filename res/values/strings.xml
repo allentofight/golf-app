@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">GolfApp</string>
-    <string name="newRound">Runde starten</string>
+    <string name="newRound">Neue Runde starten</string>
     <string name="playRound">Runde spielen</string>
     <string name="continueRound">Runde fortsetzen</string>
     <string name="setShots">Schl&#228;ge eintragen</string>

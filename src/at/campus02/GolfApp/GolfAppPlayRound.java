@@ -62,7 +62,12 @@ public class GolfAppPlayRound extends ListActivity implements GolfAppLists {
 		result = (Button) findViewById(R.id.result);
 		result.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
-
+				if (getIntent().hasExtra("onlyCourse") == true) {
+					Toast.makeText(getApplicationContext(),
+							"Sie müssen die Runde starten", Toast.LENGTH_SHORT)
+							.show();
+					return;
+				}
 				Intent myIntent = new Intent(view.getContext(),
 						GolfAppResult.class);
 				myIntent.putExtra("courseName", courseName);

@@ -48,7 +48,6 @@ public class GolfAppSetShotsForHolePlayer extends Activity {
 		}
 
 		// OK Button
-		// TODO Stephan
 		ok = (Button) findViewById(R.id.ok);
 		ok.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
