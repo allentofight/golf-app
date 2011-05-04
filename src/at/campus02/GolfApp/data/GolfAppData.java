@@ -1,5 +1,6 @@
 package at.campus02.GolfApp.data;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,6 +28,7 @@ public class GolfAppData extends SQLiteOpenHelper {
 		db.execSQL(createGolfCourse);
 		insertGolfCourse(db, 1, "Bad Gleichenberg");
 		insertGolfCourse(db, 2, "Klöch");
+		insertGolfCourse(db, 3, "Bad Gleichenberg - Minigolf");
 
 		// HOLE
 		String createGolfCourseHoles = "CREATE TABLE hole (course_id INTEGER, _id INTEGER, redDistance INTEGER, yellowDistance INTEGER, par INTEGER, handicap INTEGER, PRIMARY KEY(course_id, _id))";
@@ -69,6 +71,16 @@ public class GolfAppData extends SQLiteOpenHelper {
 		insertHole(db, 2, 17, 260, 303, 4, 8);
 		insertHole(db, 2, 18, 414, 477, 5, 10);
 
+		insertHole(db, 3, 1, 18, 18, 2, 5);
+		insertHole(db, 3, 2, 14, 14, 3, 17);
+		insertHole(db, 3, 3, 12, 12, 4, 11);
+		insertHole(db, 3, 4, 23, 23, 3, 13);
+		insertHole(db, 3, 5, 15, 15, 2, 1);
+		insertHole(db, 3, 6, 32, 32, 5, 3);
+		insertHole(db, 3, 7, 19, 19, 2, 15);
+		insertHole(db, 3, 8, 20, 20, 3, 7);
+		insertHole(db, 3, 9, 22, 21, 4, 9);
+
 		// PLAYER
 		String createPlayer = "CREATE TABLE player (name STRING PRIMARY KEY, gender INTEGER, handicap INTEGER)";
 		db.execSQL(createPlayer);
@@ -78,8 +90,9 @@ public class GolfAppData extends SQLiteOpenHelper {
 		db.execSQL(createPlayerHole);
 
 		// ROUND
-		String createRound = "CREATE TABLE round (_id INTEGER, hole_number INTEGER, player_name STRING, total_swings INTEGER, date INTEGER, PRIMARY KEY(_id, hole_number, player_name))";
-		db.execSQL(createRound);
+		// String createRound =
+		// "CREATE TABLE round (_id INTEGER, hole_number INTEGER, player_name STRING, total_swings INTEGER, date INTEGER, PRIMARY KEY(_id, hole_number, player_name))";
+		// db.execSQL(createRound);
 	}
 
 	@Override
@@ -128,12 +141,19 @@ public class GolfAppData extends SQLiteOpenHelper {
 		// null, "_id");
 	}
 
-	// TODO Stephan
-	public Cursor getResult(int courseId, String player) {
+	public Cursor getResult(int courseId, ArrayList<String> player) {
 		SQLiteDatabase db = getReadableDatabase();
 
-		return db.rawQuery("select * From playerhole where _id = " + courseId,
-				null);
+		String names = "";
+		for (int i = 0; i < player.size(); i++) {
+			names += " player_name = \"" + player.get(i) + "\" OR";
+		}
+		String namesquery = names.substring(0, names.length() - 2);
+
+		return db.rawQuery(
+				"SELECT _id,player_name,SUM(total_swings) AS total_swings FROM"
+						+ " playerhole WHERE _id = " + courseId + " AND ("
+						+ namesquery + ") GROUP BY _id,player_name", null);
 	}
 
 	public Map<String, Integer> allPlayers() {
