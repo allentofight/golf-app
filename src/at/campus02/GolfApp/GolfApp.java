@@ -10,7 +10,6 @@ import at.campus02.GolfApp.course.GolfAppCourse;
 import at.campus02.GolfApp.player.GolfAppPlayer;
 
 public class GolfApp extends Activity implements GolfAppLists {
-	/** Called when the activity is first created. */
 
 	Button newRound;
 	Button continueRound;

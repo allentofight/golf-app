@@ -29,6 +29,7 @@
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
     <string name="deleteRound"></string>
+    <string name="deletePlayer"></string>
     <string name="setShotsselectPlayer">Spieler wählen um Schläge einzutragen</string>
 </resources>
 

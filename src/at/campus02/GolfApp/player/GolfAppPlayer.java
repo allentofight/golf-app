@@ -10,8 +10,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 import at.campus02.GolfApp.R;
 import at.campus02.GolfApp.data.GolfAppData;
 
@@ -44,9 +42,11 @@ public class GolfAppPlayer extends ListActivity {
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// When clicked, show a toast with the TextView text
-				Toast.makeText(getApplicationContext(),
-						((TextView) view).getText(), Toast.LENGTH_SHORT).show();
+				String player = (String) lv.getItemAtPosition(position);
+				Intent myIntent = new Intent(getApplicationContext(),
+						GolfAppDeletePlayer.class);
+				myIntent.putExtra("player", player);
+				startActivity(myIntent);
 			}
 		});
 
