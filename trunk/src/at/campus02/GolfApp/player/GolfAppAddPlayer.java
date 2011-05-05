@@ -64,7 +64,7 @@ public class GolfAppAddPlayer extends Activity {
 
 		// Gender Select
 		gender = (Spinner) findViewById(R.id.gender);
-		ArrayAdapter adapter = ArrayAdapter.createFromResource(this,
+		ArrayAdapter<?> adapter = ArrayAdapter.createFromResource(this,
 				R.array.genders, android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		gender.setAdapter(adapter);

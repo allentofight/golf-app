@@ -62,9 +62,6 @@ public class GolfAppSetShotsForHole extends ListActivity {
 		ok = (Button) findViewById(R.id.ok);
 		ok.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
-
-				// TODO: Scheri DATA
-
 				finish();
 			}
 		});

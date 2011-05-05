@@ -188,13 +188,13 @@ public class GolfAppData extends SQLiteOpenHelper {
 
 	public void deletePlayer(String name) {
 		SQLiteDatabase db = getWritableDatabase();
-		db.delete("player", "name =" + name, null);
+		String[] names = { name };
+		db.delete("player", "name = ?", names);
 	}
 
 	public void insertRound(int courseId, int holeNumber, String playerName,
 			int totalSwings, Date date) {
 		SQLiteDatabase db = getWritableDatabase();
-
 		ContentValues values = new ContentValues();
 		values.put("_id", courseId);
 		values.put("hole_number", holeNumber);
@@ -202,7 +202,10 @@ public class GolfAppData extends SQLiteOpenHelper {
 		values.put("total_swings", totalSwings);
 		values.put("date", Date.UTC(date.getYear(), date.getMonth(),
 				date.getDay(), 0, 0, 0));
-
-		db.insertOrThrow("round", null, values);
+		try {
+			db.insertOrThrow("round", null, values);
+		} catch (Exception e) {
+			db.replaceOrThrow("round", null, values);
+		}
 	}
 }
