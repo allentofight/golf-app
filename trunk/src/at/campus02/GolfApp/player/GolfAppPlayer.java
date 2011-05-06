@@ -10,6 +10,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import at.campus02.GolfApp.GolfApp;
 import at.campus02.GolfApp.R;
 import at.campus02.GolfApp.data.GolfAppData;
 
@@ -54,7 +55,8 @@ public class GolfAppPlayer extends ListActivity {
 		ok = (Button) findViewById(R.id.ok);
 		ok.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
-				finish();
+				Intent myIntent = new Intent(view.getContext(), GolfApp.class);
+				startActivityForResult(myIntent, 0);
 			}
 		});
 
