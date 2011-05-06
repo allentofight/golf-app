@@ -47,8 +47,8 @@ public class GolfAppSetShotsForHole extends ListActivity {
 				char parchar = ch[i];
 				par = parchar - 48;
 			}
-			char parchar = ch[0];
-			hole = parchar - 48;
+			String[] str = courseName.split("\\.");
+			hole = Integer.parseInt(str[0]);
 
 			// ListView
 			setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item,
