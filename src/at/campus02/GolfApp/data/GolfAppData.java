@@ -88,7 +88,6 @@ public class GolfAppData extends SQLiteOpenHelper {
 		// ROUND
 		String createRound = "CREATE TABLE round (_id INTEGER, hole_number INTEGER, player_name STRING, total_swings INTEGER, date INTEGER, PRIMARY KEY(_id, hole_number, player_name))";
 		db.execSQL(createRound);
-
 	}
 
 	@Override
@@ -98,7 +97,6 @@ public class GolfAppData extends SQLiteOpenHelper {
 	public void newRound() {
 		SQLiteDatabase db = getWritableDatabase();
 		db.delete("round", null, null);
-
 	}
 
 	private void insertGolfCourse(SQLiteDatabase db, int courseId, String name) {
