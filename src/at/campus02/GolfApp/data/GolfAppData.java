@@ -1,9 +1,24 @@
 package at.campus02.GolfApp.data;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.htmlcleaner.CleanerProperties;
+import org.htmlcleaner.HtmlCleaner;
+import org.htmlcleaner.TagNode;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -26,13 +41,13 @@ public class GolfAppData extends SQLiteOpenHelper {
 		// GOLF_COURSE
 		String createGolfCourse = "CREATE TABLE golfcourse (_id INTEGER PRIMARY KEY, name TEXT NOT NULL)";
 		db.execSQL(createGolfCourse);
-		insertGolfCourse(db, 1, "Bad Gleichenberg");
-		insertGolfCourse(db, 2, "Klöch");
-		insertGolfCourse(db, 3, "Bad Gleichenberg - Minigolf");
 
 		// HOLE
 		String createGolfCourseHoles = "CREATE TABLE hole (course_id INTEGER, _id INTEGER, redDistance INTEGER, yellowDistance INTEGER, par INTEGER, handicap INTEGER, PRIMARY KEY(course_id, _id))";
 		db.execSQL(createGolfCourseHoles);
+
+		loadGolfCoursesIntoDb(db);
+
 		insertHole(db, 1, 1, 421, 463, 5, 5);
 		insertHole(db, 1, 2, 98, 112, 3, 17);
 		insertHole(db, 1, 3, 291, 322, 4, 11);
@@ -205,5 +220,68 @@ public class GolfAppData extends SQLiteOpenHelper {
 		} catch (Exception e) {
 			db.replaceOrThrow("round", null, values);
 		}
+	}
+
+	private void loadGolfCoursesIntoDb(SQLiteDatabase db) {
+
+		int counter = 0;
+
+		for (int i = 1; i <= 9; i++) {
+			try {
+				insertCourseIntoDb(db, 6 + String.format("%02d", i));
+				counter++;
+			} catch (Exception e) {
+				break;
+			}
+		}
+
+	}
+
+	private void insertCourseIntoDb(SQLiteDatabase db, String clubId)
+			throws MalformedURLException, IOException {
+
+		URL url = new URL("http://www.golf.at/clubs/platzdaten.asp?ClubNr="
+				+ clubId + "&Course=1");
+		Document document = Jsoup.parse(url, 3000);
+		Elements elems = document.getElementsByTag("h3");
+
+		// create an instance of HtmlCleaner
+		HtmlCleaner cleaner = new HtmlCleaner();
+
+		// take default cleaner properties
+		CleanerProperties props = cleaner.getProperties();
+
+		HttpGet httpGet = new HttpGet(
+				"http://www.golf.at/clubs/platzdaten.asp?ClubNr=" + clubId
+						+ "&Course=1");
+		HttpClient httpclient = new DefaultHttpClient();
+		// Execute HTTP Get Request
+		HttpResponse response = httpclient.execute(httpGet);
+		BufferedInputStream buffer = new BufferedInputStream(response
+				.getEntity().getContent(), 8096);
+
+		TagNode node = cleaner.clean(buffer, "iso-8859-1");
+
+		// optionally find parts of the DOM or modify some nodes
+		TagNode[] golfclub = node.getElementsByName("h3", true);
+		TagNode[] myNodes2 = node.getElementsByAttValue("class", "cell02",
+				true, true);
+
+		// skip all clubs which are not as expected
+		if (elems.isEmpty())
+			return;
+
+		insertGolfCourse(db, Integer.valueOf(clubId), elems.get(0).text());
+
+		// for (int i = 0; i < myNodes2.length; i++) {
+		// TagNode tagNode = myNodes2[i];
+		//
+		// if ((i % 18) == 0)
+		// System.out.print("\n");
+		//
+		// if (!tagNode.getChildren().isEmpty())
+		// System.out.print(tagNode.getChildren().get(0).toString() + ";");
+		// }
+
 	}
 }
