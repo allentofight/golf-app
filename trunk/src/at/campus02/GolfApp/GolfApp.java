@@ -1,12 +1,14 @@
 package at.campus02.GolfApp;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import at.campus02.GolfApp.course.GolfAppCourse;
+import at.campus02.GolfApp.data.GolfAppData;
 import at.campus02.GolfApp.player.GolfAppPlayer;
 
 public class GolfApp extends Activity implements GolfAppLists {
@@ -79,6 +81,14 @@ public class GolfApp extends Activity implements GolfAppLists {
 				startActivityForResult(myIntent, 0);
 			}
 		});
+
+		// show progress bar
+		ProgressDialog progress = ProgressDialog.show(this, "",
+				"Golfplätze werden geladen...", true, false);
+		GolfAppData data = new GolfAppData(getApplicationContext());
+		data.allCourses();
+
+		progress.cancel();
 
 	}
 }
