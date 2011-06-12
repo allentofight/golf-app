@@ -48,53 +48,20 @@ public class GolfAppData extends SQLiteOpenHelper {
 
 		loadGolfCoursesIntoDb(db);
 
-		insertHole(db, 1, 1, 421, 463, 5, 5);
-		insertHole(db, 1, 2, 98, 112, 3, 17);
-		insertHole(db, 1, 3, 291, 322, 4, 11);
-		insertHole(db, 1, 4, 129, 141, 3, 13);
-		insertHole(db, 1, 5, 305, 325, 4, 1);
-		insertHole(db, 1, 6, 254, 290, 4, 3);
-		insertHole(db, 1, 7, 235, 278, 4, 15);
-		insertHole(db, 1, 8, 260, 303, 4, 7);
-		insertHole(db, 1, 9, 414, 477, 5, 9);
-		insertHole(db, 1, 10, 421, 463, 5, 6);
-		insertHole(db, 1, 11, 98, 112, 3, 18);
-		insertHole(db, 1, 12, 291, 322, 4, 12);
-		insertHole(db, 1, 13, 129, 141, 3, 14);
-		insertHole(db, 1, 14, 305, 325, 4, 2);
-		insertHole(db, 1, 15, 254, 290, 4, 4);
-		insertHole(db, 1, 16, 235, 278, 4, 16);
-		insertHole(db, 1, 17, 260, 303, 4, 8);
-		insertHole(db, 1, 18, 414, 477, 5, 10);
-
-		insertHole(db, 2, 1, 421, 463, 5, 5);
-		insertHole(db, 2, 2, 98, 112, 3, 17);
-		insertHole(db, 2, 3, 291, 322, 4, 11);
-		insertHole(db, 2, 4, 129, 141, 3, 13);
-		insertHole(db, 2, 5, 305, 325, 4, 1);
-		insertHole(db, 2, 6, 254, 290, 4, 3);
-		insertHole(db, 2, 7, 235, 278, 4, 15);
-		insertHole(db, 2, 8, 260, 303, 4, 7);
-		insertHole(db, 2, 9, 414, 477, 5, 9);
-		insertHole(db, 2, 10, 421, 463, 5, 6);
-		insertHole(db, 2, 11, 98, 112, 3, 18);
-		insertHole(db, 2, 12, 291, 322, 4, 12);
-		insertHole(db, 2, 13, 129, 141, 3, 14);
-		insertHole(db, 2, 14, 305, 325, 4, 2);
-		insertHole(db, 2, 15, 254, 290, 4, 4);
-		insertHole(db, 2, 16, 235, 278, 4, 16);
-		insertHole(db, 2, 17, 260, 303, 4, 8);
-		insertHole(db, 2, 18, 414, 477, 5, 10);
-
-		insertHole(db, 3, 1, 18, 18, 2, 5);
-		insertHole(db, 3, 2, 14, 14, 3, 17);
-		insertHole(db, 3, 3, 12, 12, 4, 11);
-		insertHole(db, 3, 4, 23, 23, 3, 13);
-		insertHole(db, 3, 5, 15, 15, 2, 1);
-		insertHole(db, 3, 6, 32, 32, 5, 3);
-		insertHole(db, 3, 7, 19, 19, 2, 15);
-		insertHole(db, 3, 8, 20, 20, 3, 7);
-		insertHole(db, 3, 9, 22, 21, 4, 9);
+		/*
+		 * for (int i = 601; i <= 609; i++) { insertHole(db, i, 1, 421, 463, 5,
+		 * 5); insertHole(db, i, 2, 98, 112, 3, 17); insertHole(db, i, 3, 291,
+		 * 322, 4, 11); insertHole(db, i, 4, 129, 141, 3, 13); insertHole(db, i,
+		 * 5, 305, 325, 4, 1); insertHole(db, i, 6, 254, 290, 4, 3);
+		 * insertHole(db, i, 7, 235, 278, 4, 15); insertHole(db, i, 8, 260, 303,
+		 * 4, 7); insertHole(db, i, 9, 414, 477, 5, 9); insertHole(db, i, 10,
+		 * 421, 463, 5, 6); insertHole(db, i, 11, 98, 112, 3, 18);
+		 * insertHole(db, i, 12, 291, 322, 4, 12); insertHole(db, i, 13, 129,
+		 * 141, 3, 14); insertHole(db, i, 14, 305, 325, 4, 2); insertHole(db, i,
+		 * 15, 254, 290, 4, 4); insertHole(db, i, 16, 235, 278, 4, 16);
+		 * insertHole(db, i, 17, 260, 303, 4, 8); insertHole(db, i, 18, 414,
+		 * 477, 5, 10); }
+		 */
 
 		// PLAYER
 		String createPlayer = "CREATE TABLE player (name STRING PRIMARY KEY, gender INTEGER, handicap INTEGER)";
@@ -273,15 +240,37 @@ public class GolfAppData extends SQLiteOpenHelper {
 
 		insertGolfCourse(db, Integer.valueOf(clubId), elems.get(0).text());
 
-		// for (int i = 0; i < myNodes2.length; i++) {
-		// TagNode tagNode = myNodes2[i];
-		//
-		// if ((i % 18) == 0)
-		// System.out.print("\n");
-		//
-		// if (!tagNode.getChildren().isEmpty())
-		// System.out.print(tagNode.getChildren().get(0).toString() + ";");
-		// }
+		int[][] config = new int[6][18];
+
+		int line = 0;
+		int column = 0;
+
+		for (int i = 0; i < myNodes2.length; i++) {
+			TagNode tagNode = myNodes2[i];
+			if (i > 0 && (i % 18) == 0) {
+				System.out.print("\n");
+
+				line++;
+				column = 0;
+
+				if (line >= 6)
+					break;
+			}
+
+			if (!tagNode.getChildren().isEmpty()) {
+				config[line][column] = Integer.parseInt(tagNode.getChildren()
+						.get(0).toString());
+			}
+
+			column++;
+		}
+
+		for (int holes = 0; holes < 18; holes++) {
+
+			insertHole(db, Integer.parseInt(clubId), holes + 1,
+					config[3][holes], config[2][holes], config[0][holes],
+					config[1][holes]);
+		}
 
 	}
 }
